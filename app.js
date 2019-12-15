@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const cors = require('cors')
 const mercari = require("./routes/mercari");
-const rakuten = require("./routes/rakuten");
+
 const app = express();
 require('dotenv').config();
 
@@ -20,7 +20,6 @@ app.use(cors());
 //routes middleware
 
 app.use("/pi", mercari);
-app.use("/pi", rakuten);
 
 
 app.listen(8008, () => {
