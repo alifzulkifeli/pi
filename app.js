@@ -20,6 +20,9 @@ app.use(cors());
 //routes middleware
 
 app.use("/pi", mercari);
+app.use("/", (req, res) =>{
+  res.json(process.env.PRICE) 
+});
 
 
 app.listen(8008, () => {
