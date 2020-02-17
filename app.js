@@ -1,27 +1,26 @@
 //require packages fron npm
 const express = require('express');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
-
 const cors = require('cors')
+
 const mercari = require("./routes/mercari");
 const translate = require("./routes/translate");
+const rakuten = require("./routes/rakuten")
 
 const app = express();
 require('dotenv').config();
 
-//middlewares
-app.use(morgan('dev'));
-app.use(bodyParser.json({limit: '10mb', extended: true}));
 
-// app.use(expressValidator());
+app.use(morgan('dev'));
 app.use(cors());
 
 
 //routes middleware
 
 app.use("/pi", mercari);
-app.use("/pi", translate);
+// app.use("/pi", translate);
+// app.use("/pi", rakuten);
+
 app.use("/", (req, res) =>{
   res.json(process.env.PRICE) 
 });
