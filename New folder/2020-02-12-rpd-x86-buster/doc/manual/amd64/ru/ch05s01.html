@@ -1,0 +1,289 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Запуск программы установки на 64-bit PC</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Руководство по установке Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Глава 5. Загрузка системы установки">
+<link rel="prev" href="ch05.html" title="Глава 5. Загрузка системы установки">
+<link rel="next" href="ch05s02.html" title="5.2. Лёгкость управления">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Запуск программы установки на <span class="phrase">64-bit PC</span>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<th width="60%" align="center">Глава 5. Загрузка системы установки</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm1030"></a>5.1. Запуск программы установки на <span class="phrase">64-bit PC</span>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </h2></div></div></div>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Предупреждение]" src="images/warning.png"></td>
+<th align="left">Предупреждение</th>
+</tr>
+<tr><td align="left" valign="top"><p>Если у вас уже установлены другие операционные системы и их нужно сохранить (настроить двойную загрузку), <span class="emphasis"><em>перед</em></span> тем как загружать программу установки убедитесь, что они были полностью выключены. Установка операционной системы в то время как другая операционная система находится в режиме "спячки" (была выполнена приостановка с сохранением состояния на диск) может привести к потере или повреждению состояния приостановленной системы, вследствие чего могут возникнуть проблемы при её перезагрузке. </p></td></tr>
+</table></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Примечание]" src="images/note.png"></td>
+<th align="left">Примечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>О том, как запустить программу установки с графическим интерфейсом смотрите <a class="xref" href="ch05s01.html#graphical" title="5.1.8. Программа установки с графическим интерфейсом">Раздел 5.1.8, «Программа установки с графическим интерфейсом»</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-x86"></a>5.1.1. Загрузка с карты памяти USB</h3></div></div></div>
+<p>Если ваш компьютер будет загружаться с USB, то это, вероятно, самый простой путь установки. Предполагая, что вы уже приготовили всё как написано в <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-x86" title="3.6.2. Выбор загрузочного устройства">Раздел 3.6.2, «Выбор загрузочного устройства»</a></span> и <a class="xref" href="ch04s03.html" title="4.3. Подготовка файлов для загрузки с карты памяти USB">Раздел 4.3, «Подготовка файлов для загрузки с карты памяти USB»</a>, просто вставьте карту памяти USB в свободное гнездо USB и перезагрузите компьютер. Система должна загрузиться и, если вы не использовали гибкий способ создания карты и не включили этого, то должны увидеть графическое меню загрузки (если это поддерживается аппаратурой). Здесь вы можете ввести необязательные параметры загрузки или просто нажать <span class="keycap"><strong>Enter</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1046"></a>5.1.2. Загрузка с CD-ROM</h3></div></div></div>
+<p>Если у вас есть набор компакт-дисков и ваш компьютер поддерживает загрузку с компакт-диска, прекрасно! Просто <span class="phrase"> настройте ваш компьютер для загрузки с компакт-диска как описано в <a class="xref" href="ch03s06.html#boot-dev-select-x86" title="3.6.2. Выбор загрузочного устройства">Раздел 3.6.2, «Выбор загрузочного устройства»</a>, </span> вставьте компакт-диск, перезагрузите компьютер и переходите к следующей главе. </p>
+<p>Заметим, что некоторым приводам компакт-дисков нужны специальные драйверы и поэтому, они недоступны на ранних стадиях установки. Если производимая стандартная последовательность загрузки с CD не работает, обратитесь к этой главе снова и прочитайте об альтернативных ядрах и методах установки, которые доступны для вашей машины. </p>
+<p>Даже если не удалось загрузиться с CD-ROM, вероятно, вы ещё сможете установить с CD-ROM компоненты Debian и пакеты. Просто загрузитесь с другого носителя и когда придёт время установки операционной системы, базовой системы или дополнительных пакетов, укажите программе установки на привод CD-ROM. </p>
+<p>При возникновении проблем с загрузкой смотрите <a class="xref" href="ch05s04.html" title="5.4. Диагностика проблем процесса установки">Раздел 5.4, «Диагностика проблем процесса установки»</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-win32"></a>5.1.3. Загрузка из Windows</h3></div></div></div>
+<p>Чтобы запустить программу установки из Windows, вы можете </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>получить установочный носитель CD-ROM/DVD-ROM<span class="phrase"> или карту памяти USB</span>, как описано в <a class="xref" href="ch04s01.html" title="4.1. Официальный набор CD/DVD-ROM Debian GNU/Linux">Раздел 4.1, «Официальный набор CD/DVD-ROM Debian GNU/Linux»</a><span class="phrase">(<a class="xref" href="ch04s03.html" title="4.3. Подготовка файлов для загрузки с карты памяти USB">Раздел 4.3, «Подготовка файлов для загрузки с карты памяти USB»</a>)</span> или  </p></li>
+<li class="listitem"><p>скачать с серверов-зеркал Debian исполняемый в Windows файл <a class="ulink" href="http://http.us.debian.org/debian/tools/win32-loader/stable/win32-loader.exe" target="_top">tools/win32-loader/stable/win32-loader.exe</a>. </p></li>
+</ul></div>
+<p>
+
+</p>
+<p>Если это CD-ROM или DVD-ROM, то после вставки диска, программа должна запуститься автоматически. Если Windows не запустила её, или у вас карта памяти USB, то вы можете сделать это вручную, открыв устройство и запустив <span class="command"><strong>setup.exe</strong></span>. </p>
+<p>Когда программа запустится, будет задано несколько предварительных вопросов, и система будет подготовлена для запуска программы установки Debian GNU/Linux. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="install-from-dos"></a>5.1.4. Загрузка из DOS с помощью loadlin</h3></div></div></div>
+<p>Загрузите DOS (не из Windows). Для этого вы можете использовать диск восстановления или диагностики. </p>
+<p>Если вы можете работать с установочным CD, измените текущий диск на устройство CD-ROM, например </p>
+<div class="informalexample"><pre class="screen">
+d:
+</pre></div>
+<p>, а также убедитесь, что доступен ранее подготовленный жёсткий диск (<a class="xref" href="ch04s04.html#files-loadlin" title="4.4.2. Загрузка программы установки с жёсткого диска из DOS с помощью loadlin">Раздел 4.4.2, «Загрузка программы установки с жёсткого диска из DOS с помощью <span class="command"><strong>loadlin</strong></span>»</a>), и измените текущий диск на его, если потребуется. </p>
+<p>Войдите в подкаталог выбранного вами типа, например, </p>
+<div class="informalexample"><pre class="screen">
+cd \install.<code class="filename">amd</code>
+</pre></div>
+<p> Если вы хотите использовать графический интерфейс к программе установки, то войдите в подкаталог <code class="filename">gtk</code>. </p>
+<div class="informalexample"><pre class="screen">
+cd gtk
+</pre></div>
+<p> Затем запустите <span class="command"><strong>install.bat</strong></span>. Будет загружено ядро и запущена система установки. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-initrd"></a>5.1.5. Загрузка из Linux с помощью <span class="command"><strong>LILO</strong></span> или <span class="command"><strong>GRUB</strong></span>
+</h3></div></div></div>
+<p>Для загрузки программы установки с жёсткого диска у вас уже должны быть полностью полученные и размещённые на диске необходимые файлы (смотрите <a class="xref" href="ch04s04.html" title="4.4. Подготовка файлов для загрузки с жёсткого диска">Раздел 4.4, «Подготовка файлов для загрузки с жёсткого диска»</a>). </p>
+<p>Если вы намереваетесь использовать жёсткий диск только для загрузки, а затем выполнять установку по сети, то вы должны скачать файл <code class="filename">netboot/debian-installer/amd64/initrd.gz</code> и соответствующее ему ядро <code class="filename">netboot/debian-installer/amd64/linux</code>. Это позволит вам переразметить жёсткий диск с которого вы загрузились, хотя вы должны делать это осторожно. </p>
+<p>Или же, если вы намереваетесь сохранить существующий раздел жёсткого диска неизменным во время установки, то можете скачать файл <code class="filename">hd-media/initrd.gz</code> и ядро, а также скопировать файл образа CD (или DVD) на жёсткий диск (проверьте, что имя заканчивается на <code class="literal">.iso</code>). Затем программу установки можно загрузить с диска и установить из образа CD/DVD без использования сети. </p>
+<p>В <span class="command"><strong>LILO</strong></span> нужно настроить две важные вещи в файле <code class="filename">/etc/lilo.conf</code>: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> загружать программу установки из <code class="filename">initrd.gz</code>; </p></li>
+<li class="listitem"><p> ядро <code class="filename">vmlinuz</code> использует RAM диск в качестве корневого раздела. </p></li>
+</ul></div>
+<p> Вот пример <code class="filename">/etc/lilo.conf</code>: </p>
+<p>
+
+</p>
+<div class="informalexample"><pre class="screen">image=/boot/newinstall/vmlinuz
+       label=newinstall
+       initrd=/boot/newinstall/initrd.gz
+</pre></div>
+<p> Подробней смотрите на страницах руководства <span class="citerefentry"><span class="refentrytitle">initrd</span>(4)</span> и <span class="citerefentry"><span class="refentrytitle">lilo.conf</span>(5)</span>. Теперь запустите <strong class="userinput"><code>lilo</code></strong> и перезагрузите машину. </p>
+<p>Процедура для <span class="command"><strong>GRUB1</strong></span> очень похожа. Найдите файл <code class="filename">menu.lst</code> в каталоге <code class="filename">/boot/grub/</code> (или иногда в <code class="filename">/boot/boot/grub/</code>) и добавьте запись для программы установки, например (предполагается, что <code class="filename">/boot</code> находится на первом разделе первого жёсткого диска системы): </p>
+<div class="informalexample"><pre class="screen">title  New Install
+root   (hd0,0)
+kernel /boot/newinstall/vmlinuz
+initrd /boot/newinstall/initrd.gz
+</pre></div>
+<p>
+
+</p>
+<p>Процедура для <span class="command"><strong>GRUB2</strong></span> очень похожа. Только вместо <code class="filename">menu.lst</code> используется файл <code class="filename">grub.cfg</code>. Запись для программы установки может выглядеть так: </p>
+<div class="informalexample"><pre class="screen">menuentry 'New Install' {
+insmod part_msdos
+insmod ext2
+set root='(hd0,msdos1)'
+linux /boot/newinstall/vmlinuz
+initrd /boot/newinstall/initrd.gz
+}
+</pre></div>
+<p>
+
+</p>
+<p>В дальнейшем нет никакой разницы между <span class="command"><strong>GRUB</strong></span> или <span class="command"><strong>LILO</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-x86"></a>5.1.6. Загрузка по TFTP</h3></div></div></div>
+<p>Загрузка по сети требует наличия сетевого подключения и сетевого загрузочного сервера TFTP (и, вероятно, также серверов DHCP, RARP или BOOTP для автоматической настройки по сети). </p>
+<p>Настройка сервера для обеспечения загрузки из сети описана в <a class="xref" href="ch04s05.html" title="4.5. Подготовка файлов для загрузки по TFTP">Раздел 4.5, «Подготовка файлов для загрузки по TFTP»</a>. </p>
+<p>Есть несколько возможностей выполнить загрузку по TFTP на i386. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1142"></a>5.1.6.1. Сетевая карта или материнская плата с поддержкой PXE</h4></div></div></div>
+<p>Возможно, ваша сетевая карта (NIC) или материнская плата предоставляют возможность загрузки через PXE. Так названа реализация TFTP загрузки от компании <span class="trademark">Intel</span>™. В этом случае вы можете настроить BIOS на загрузку по сети. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1146"></a>5.1.6.2. Сетевая карта с сетевым BootROM</h4></div></div></div>
+<p>Возможно, что сетевая карта (NIC) предоставляет возможность загрузки по TFTP. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1149"></a>5.1.6.3. Etherboot</h4></div></div></div>
+<p><a class="ulink" href="http://www.etherboot.org" target="_top">Проект etherboot</a> предоставляет загрузочные дискеты и даже прошивки (bootrom) для TFTPboot. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-screen"></a>5.1.7. Экран запуска</h3></div></div></div>
+<p>После загрузки программы установки экран должен переключиться в графический режим и отобразить логотип Debian и меню: </p>
+<div class="informalexample"><pre class="screen">Debian GNU/Linux installer boot menu
+
+Graphical install
+Install
+Advanced options             &gt;
+Help
+Install with speech synthesis
+</pre></div>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Примечание]" src="images/note.png"></td>
+<th align="left">Примечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>Этот список может немного отличаться, в зависимости от того, как загружался компьютер (BIOS или UEFI), но пункты будут такими же. </p></td></tr>
+</table></div>
+<p>В зависимости от используемого метода установки пункт <span class="quote">«<span class="quote">Graphical install</span>»</span> может быть недоступен. Двуархитектурные образы также имеют 64-битный вариант для каждого пункта установки, что почти удваивает количество пунктов. </p>
+<p>Для обычной установки выберите <span class="quote">«<span class="quote">Graphical Install</span>»</span> или <span class="quote">«<span class="quote"> Install</span>»</span> с помощью клавиш со стрелками на клавиатуре или нажав первую (выделенную) букву и нажмите <span class="keycap"><strong>Enter</strong></span> для запуска программы установки. Элемент <span class="quote">«<span class="quote">Graphical Install</span>»</span> уже выбран настройкой по умолчанию. </p>
+<p>Пункт <span class="quote">«<span class="quote">Advanced options</span>»</span> выводит второе меню, которое позволяет запускать программу установки в экспертном режиме, в режиме восстановления и для автоматизации установки. </p>
+<p>Если вы хотите добавить какие-то параметры загрузки для программы установки или ядра, то нажмите <span class="keycap"><strong>Tab</strong></span> (загрузка BIOS) или <span class="keycap"><strong>e</strong></span>, а затем <span class="keycap"><strong>down arrow</strong></span> три раза, после чего <span class="keycap"><strong>end</strong></span> (загрузка UEFI). После этого будет показана команда загрузки для выбранного пункта меню, и можно будет ввести дополнительные параметры. Заметим, что раскладкой клавиатуры здесь ещё является QWERTY. В экранной справке (смотрите далее) можно найти описание общих параметров. Нажмите <span class="keycap"><strong>Enter</strong></span> (загрузка BIOS) или <span class="keycap"><strong>F10</strong></span> (загрузка UEFI) для загрузки программы установки с вашими параметрами; чтобы вернуться в загрузочное меню и отменить любые сделанные вами изменения, нажмите <span class="keycap"><strong>Esc</strong></span>. </p>
+<p>Выбрав пункт <span class="quote">«<span class="quote">Help</span>»</span>, можно увидеть первый справочный экран, на котором дано краткое описание всех доступных справочных экранов. Чтобы вернуться в загрузочное меню из справочных экранов, введите «menu» в приглашении к загрузке и нажмите <span class="keycap"><strong>Enter</strong></span>. Все справочные экраны имеют приглашение к загрузке, в котором можно набрать команду загрузки: </p>
+<div class="informalexample"><pre class="screen">
+Press F1 for the help index, or ENTER to boot:
+</pre></div>
+<p> В приглашении к загрузке, вы можете просто нажать <span class="keycap"><strong>Enter</strong></span> для запуска программы установки с параметрами по умолчанию, или ввести специальную команду загрузки и параметры к ней. Различные загрузочные параметры можно найти на справочных экранах. Если вы добавляете какой-то параметр в командную строку загрузки, убедитесь, что сперва указан метод загрузки (по умолчанию <strong class="userinput"><code>install</code></strong>), и есть пробел перед первым параметром (например, <strong class="userinput"><code>install fb=false</code></strong>). </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Примечание]" src="images/note.png"></td>
+<th align="left">Примечание</th>
+</tr>
+<tr><td align="left" valign="top"><p>По умолчанию предполагается, что используется клавиатура с раскладкой американского английского. Это означает, что если клавиатура имеет другую (языковую) раскладку, то при вводе параметров на экране могут появляться не те символы, которых вы ожидаете. В Wikipedia есть картинка <a class="ulink" href="https://en.wikipedia.org/wiki/Keyboard_layout#United_States" target="_top">американской раскладки клавиатуры</a>, которую можно использовать для поиска нужных клавиш. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Примечание]" src="images/note.png"></td>
+<th align="left">Примечание</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Если вы используете компьютер, в котором из BIOS настроена работа через последовательную консоль, то вы можете не увидеть начальную графическую заставку на экране при запуске программы установки; вы даже можете не увидеть загрузочное меню. Это же может случиться, если вы устанавливаете систему через удалённое устройство управления, которое предоставляет текстовый интерфейс на VGA консоли. К таким устройствам относятся текстовые консоли Compaq <span class="quote">«<span class="quote">integrated Lights Out</span>»</span> (iLO) и HP <span class="quote">«<span class="quote">Integrated Remote Assistant</span>»</span> (IRA). </p>
+<p>Чтобы пропустить графическую заставку загрузки вы можете вслепую нажать <span class="keycap"><strong>Esc</strong></span> и получить текстовое приглашение к загрузке, или (также вслепую) нажать <span class="quote">«<span class="quote">H</span>»</span> и <span class="keycap"><strong>Enter</strong></span> для выбора пункта <span class="quote">«<span class="quote">Help</span>»</span>, описанного ранее. После этого, вы должны видеть то, что набираете. Чтобы программа установки не использовала фрейм-буфер для дальнейшей установки, также вам нужно добавить в приглашение к загрузке параметр <strong class="userinput"><code>vga=normal fb=false</code></strong>, который описан в справке. </p>
+</td></tr>
+</table></div>
+<p>
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.8. Программа установки с графическим интерфейсом</h3></div></div></div>
+<p>Графическая версия программы установки доступна только для ограниченного числа архитектур, включая <span class="phrase">64-bit PC</span>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   . Функциональность графической версии программы установки практически такая же, что и у текстовой программы установки, так как внутри используются одинаковые программы, отличия только в интерфейсе. </p>
+<p>Хотя функциональность и одинакова, графическая версия программы установки обладает рядом значительных новшеств. Основное преимущество — поддержка большего числа языков, а именно тех, в которых нельзя отобразить все символы через текстовый интерфейс <span class="quote">«<span class="quote">newt</span>»</span>. Также, ей более удобно пользоваться, управляя с помощью мыши, и иногда некоторые вопросы целиком влезают на один экран. </p>
+<p>Графическая версия программы установки доступна со всех образов CD и при установке с жёсткого диска. Для запуска графической версии просто выберите соответствующий пункт в загрузочном меню. Режимы эксперта и восстановления для графической версии выбираются в меню <span class="quote">«<span class="quote">Advanced options</span>»</span>. Ранее использовавшиеся способы загрузки <strong class="userinput"><code>installgui</code></strong>, <strong class="userinput"><code>expertgui</code></strong> и <strong class="userinput"><code>rescuegui</code></strong> остались доступны из загрузочной командной строки, которая появляется после выбора пункта <span class="quote">«<span class="quote">Help</span>»</span> в загрузочном меню. </p>
+<p>Доступен образ графической программы установки, загружаемый по сети. Также есть специальный <span class="quote">«<span class="quote">mini</span>»</span> ISO-образ<a href="#ftn.gtk-miniiso-x86" class="footnote" name="gtk-miniiso-x86"><sup class="footnote">[5]</sup></a>, который, в основном, полезен для тестов. </p>
+<p>Как и для текстовой программы установки можно добавлять параметры загрузки при запуске её графической версии. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Примечание]" src="images/note.png"></td>
+<th align="left">Примечание</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Для графической версии программы установки требуется гораздо больше памяти для запуска, чем для текстовой программы установки: 800MB. Если памяти недостаточно, то автоматически будет осуществлён переход на текстовый интерфейс <span class="quote">«<span class="quote">newt</span>»</span>. </p>
+<p>Если количество установленной памяти в системе меньше 550MB, то графическая программа установки может совсем не запуститься, в то время как загрузка текстовой программы установки будет работать. При малом количестве памяти в системе рекомендуется использовать текстовую программу установки с консольным интерфейсом. </p>
+</td></tr>
+</table></div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.gtk-miniiso-x86" class="footnote"><p><a href="#gtk-miniiso-x86" class="para"><sup class="para">[5] </sup></a> Образ mini ISO можно скачать с сервера-зеркала Debian, действуя по описанию из <a class="xref" href="ch04s02.html" title="4.2. Скачивание файлов с серверов-зеркал Debian">Раздел 4.2, «Скачивание файлов с серверов-зеркал Debian»</a>. Ищите <code class="filename">netboot/gtk/mini.iso</code>. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Наверх"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Глава 5. Загрузка системы установки </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Начало"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Лёгкость управления</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

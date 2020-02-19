@@ -1,0 +1,163 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Bestanden klaar maken om van een USB-geheugenstick op te starten</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installatiehandleiding">
+<link rel="up" href="ch04.html" title="Hoofdstuk 4. Media met het installatiesysteem verkrijgen">
+<link rel="prev" href="ch04s02.html" title="4.2. Bestanden downloaden van Debian spiegelservers">
+<link rel="next" href="ch04s04.html" title="4.4. Bestanden voorbereiden om vanaf een harde schijf op te starten">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Bestanden klaar maken om van een USB-geheugenstick op te starten</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<th width="60%" align="center">Hoofdstuk 4. Media met het installatiesysteem verkrijgen</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-usb-files"></a>4.3. Bestanden klaar maken om van een USB-geheugenstick op te starten</h2></div></div></div>
+<p>Om een USB-stick klaar te maken, heeft u een systeem nodig waarop GNU/Linux reeds actief is en dat USB ondersteunt. Op de huidige GNU/Linux-systemen zou de USB-stick automatisch herkend moeten worden als u hem in de USB-aansluiting plaatst. Als dat niet gebeurt moet u nagaan of de kernel-module usb-storage geladen is. Als u de USB-stick in de aansluiting plaatst, zal hij herkend worden als een apparaat met als naam <code class="filename">/dev/sdX</code>, waarbij de <span class="quote">“<span class="quote">X</span>”</span> een letter is uit het bereik a-z. U kunt nagaan als welk apparaat de USB-stick herkend werd, door het commando <span class="command"><strong>dmesg</strong></span> uit te voeren nadat u de stick in de aansluiting plaatste. Om naar uw stick te kunnen schrijven, kan het nodig zijn om het schakelaartje dat hem tegen schrijven beveiligd, op uit te zetten. </p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Waarschuwing]" src="images/warning.png"></td>
+<th align="left">Waarschuwing</th>
+</tr>
+<tr><td align="left" valign="top"><p>De procedures die in dit deel beschreven worden zullen alles wat al op het apparaat staat, verwijderen! Vergewis u er dus heel goed van dat u de correcte apparaatnaam gebruikt voor uw USB-stick. Indien u de verkeerde apparaatnaam gebruikt, kan het resultaat zijn dat alle informatie op bijvoorbeeld een harde schijf, verloren gaat. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-isohybrid"></a>4.3.1. Een USB-stick klaar maken met een hybride CD- of DVD-image</h3></div></div></div>
+<p>Debian CD- en DVD-images kunnen nu rechtstreeks naar een USB-stick geschreven worden, wat een erg gemakkelijke manier is om een opstartbare USB-stick aan te maken. Kies gewoon een CD- of DVD-image (zoals het netinst, CD-1, DVD-1 of netboot-image) dat past op uw USB-stick. Ga naar <a class="xref" href="ch04s01.html" title="4.1. Officiële Debian GNU/Linux CD/DVD-sets">Paragraaf 4.1, “Officiële Debian GNU/Linux CD/DVD-sets”</a> om een CD- of DVD-image op te halen. </p>
+<p>Als een alternatieve mogelijkheid voor zeer kleine USB-sticks van slechts enkele megabytes groot, kunt u het <code class="filename">mini.iso</code>-image uit de <code class="filename">netboot</code>-map downloaden (op de in <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Waar u installatie-images kunt vinden">Paragraaf 4.2.1, “Waar u installatie-images kunt vinden”</a> vermelde plaats). </p>
+<p>Het CD- of DVD-image dat u koos, moet rechtstreeks naar de USB-stick geschreven worden. Daarbij wordt de huidige inhoud ervan overschreven. Bijvoorbeeld, als u een bestaand GNU/Linux-systeem gebruikt, kan het imagebestand van de CD of de DVD op de volgende manier naar een USB-stick geschreven worden, nadat u er zich eerst van vergewist heeft dat de stick niet aangekoppeld is: </p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>cp <em class="replaceable"><code>debian.iso</code></em> /dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>sync</code></strong>
+</pre></div>
+<p> Informatie over hoe dit op andere besturingssystemen moet gebeuren, is te vinden in de <a class="ulink" href="https://www.debian.org/CD/faq/index.en.html#write-usb" target="_top">Debian CD FAQ</a>. </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Belangrijk]" src="images/important.png"></td>
+<th align="left">Belangrijk</th>
+</tr>
+<tr><td align="left" valign="top"><p>Het image moet geschreven worden op het volledige schijfapparaat en niet op en partitie, bijvoorbeeld /dev/sdb en niet /dev/sdb1. Gebruik geen gereedschap zoals <span class="command"><strong>unetbootin</strong></span> dat aan het image veranderingen aanbrengt. </p></td></tr>
+</table></div>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Belangrijk]" src="images/important.png"></td>
+<th align="left">Belangrijk</th>
+</tr>
+<tr><td align="left" valign="top"><p>Voor de meeste gebruikers zou het op deze manier eenvoudig wegschrijven van een CD- of DVD-image naar USB goed moeten werken. De hierna volgende andere mogelijkheden zijn complexer en hoofdzakelijk bedoeld voor mensen met specifieke behoeftes. </p></td></tr>
+</table></div>
+<p>Het hybride image op de stick neemt niet alle opslagruimte in beslag. Het kan dus de moeite waard zijn om in overweging te nemen om de vrije ruimte te gebruiken om er firmwarebestanden of -pakketten op te plaatsen of desgewenst andere bestanden. Dit kan nuttig zijn indien u slechts één stick heeft of alles wat u nodig heeft op één apparaat wilt houden. </p>
+<p>Maak een tweede FAT-partitie aan op de stick, koppel de partitie aan en kopieer of pak de firmware ernaartoe uit. Bijvoorbeeld: </p>
+<div class="informalexample"><pre class="screen"># mount /dev/<em class="replaceable"><code>sdX2</code></em> /mnt
+# cd /mnt
+# tar zxvf <em class="replaceable"><code>/pad/naar/</code></em>firmware.tar.gz
+# cd /
+# umount /mnt
+</pre></div>
+<p>
+
+</p>
+<p>Misschien heeft u de <code class="filename">mini.iso</code> naar de USB geschreven. In dat geval moet de tweede partitie niet gecreëerd worden, omdat ze al aanwezig zal zijn, wat erg handig is. De USB-stick uit de aansluiting halen en ze er terug insteken, zou de twee partities zichtbaar moeten maken. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-easy"></a>4.3.2. Handmatig bestanden naar de USB-stick kopiëren</h3></div></div></div>
+<p>Een andere manier om uw USB-stick klaar te maken, is door er handmatig de bestanden van het installatiesysteem op te plaatsen samen met een CD-image. Merk op dat de USB-stick minstens 1 GB groot moet zijn (het kan met een kleinere grootte als u de richtlijnen in <a class="xref" href="ch04s03.html#usb-copy-flexible" title="4.3.3. Handmatig bestanden naar de USB-stick kopiëren — de flexibele manier">Paragraaf 4.3.3, “Handmatig bestanden naar de USB-stick kopiëren — de flexibele manier”</a> volgt). </p>
+<p>Er bestaat een alles-in-één bestand <code class="filename">hd-media/boot.img.gz</code> dat al de bestanden van het installatiesysteem bevat (met inbegrip van de kernel) <span class="phrase">evenals <code class="classname">syslinux</code> en zijn configuratiebestand</span> . </p>
+<p>Merk op dat hoewel deze methode handig is, ze een belangrijk nadeel heeft: de logische grootte van het apparaat wordt beperkt tot 1 GB, zelfs als de USB-stick een grotere capaciteit heeft. U zult de USB-stick opnieuw moeten indelen in partities en er opnieuw een bestandssysteem op moeten creëren om zijn volledige capaciteit terug te winnen, als u hem ooit voor andere doeleinden wilt gebruiken. </p>
+<p>Om dit image te gebruiken, moet u het gewoon direct naar uw USB-stick uitpakken: </p>
+<div class="informalexample"><pre class="screen"># zcat boot.img.gz &gt; /dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p>
+
+</p>
+<p>Koppel nadien de USB-geheugenstick aan <span class="phrase">(<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX</code></em> /mnt</code></strong>),</span>  waarop nu <span class="phrase">een FAT-bestandssysteem</span>  zal staan en kopieer er een Debian ISO-image (netinst of de volledige CD) naartoe. Koppel de stick af (<strong class="userinput"><code>umount /mnt</code></strong>) en u bent klaar. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-flexible"></a>4.3.3. Handmatig bestanden naar de USB-stick kopiëren — de flexibele manier</h3></div></div></div>
+<p>Indien u van meer flexibiliteit houdt of gewoon wilt weten hoe de zaak in mekaar zit, moet u de volgende methode gebruiken om de bestanden op de stick te plaatsen. Een voordeel van deze methode is dat — als uw USB-stick een voldoende grote capaciteit heeft — u de mogelijkheid heeft om er gelijk welk ISO-image naar te kopiëren, zelfs een DVD-image. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm824"></a>4.3.3.1. De USB-stick indelen in partities</h4></div></div></div>
+<p>We zullen u tonen hoe u de geheugenstick moet instellen om slechts de eerste partitie in plaats van het volledige apparaat te gebruiken. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Aangezien de meeste USB-sticks vooraf geconfigureerd zijn met één enkele FAT16-partitie, zult u de stick wellicht niet opnieuw moeten indelen of herformatteren. Als u dat toch moet doen, gebruik dan <span class="command"><strong>cfdisk</strong></span> of een ander partitiegereedschap om een FAT16-partitie te maken<a href="#ftn.idm830" class="footnote" name="idm830"><sup class="footnote">[3]</sup></a>, installeer een MBR met: </p>
+<div class="informalexample"><pre class="screen">
+# install-mbr /dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p> Het commando <span class="command"><strong>install-mbr</strong></span> is te vinden in het Debian pakket <code class="classname">mbr</code>. Creëer daarna het bestandssysteem met: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Zorg ervoor om voor uw USB-stick de correcte apparaatnaam te gebruiken. Het commando <span class="command"><strong>mkdosfs</strong></span> is te vinden in het Debian pakket <code class="classname">dosfstools</code>. </p>
+</td></tr>
+</table></div>
+<p>Om na het opstarten vanaf de USB-stick de kernel te starten, zullen we een opstartlader plaatsen op de stick. Hoewel elke opstartlader (bijv. <code class="classname">lilo</code>) zou moeten werken, is het handig om <code class="classname">syslinux</code> te gebruiken, omdat die een FAT16-partitie gebruikt en eenvoudig geconfigureerd kan worden door gewoon een tekstbestand te bewerken. Elk besturingssysteem dat het FAT-bestandssysteem ondersteunt, kan gebruikt worden om de configuratie van de opstartlader aan te passen. </p>
+<p>Om <code class="classname">syslinux</code> op de FAT16-partitie van uw USB-stick te plaatsen, moet u de pakketten <code class="classname">syslinux</code> en <code class="classname">mtools</code> op uw systeem installeren en het volgende commando geven: </p>
+<div class="informalexample"><pre class="screen">
+# syslinux /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Nogmaals, zorg ervoor dat u de juiste apparaatnaam gebruikt. De partitie mag niet aangekoppeld zijn als u <span class="command"><strong>syslinux</strong></span> start. Deze procedure schrijft een opstartsector naar de partitie en creëert het bestand <code class="filename">ldlinux.sys</code> dat de code van de opstartlader bevat. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm855"></a>4.3.3.2. Het image van het installatiesysteem toevoegen</h4></div></div></div>
+<p>Koppel de partitie aan (<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX1</code></em> /mnt</code></strong>) en kopieer de volgende imagebestanden van het installatiesysteem naar de stick: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> <code class="filename">vmlinuz</code> of <code class="filename">linux</code> (het binaire kernelbestand) </p></li>
+<li class="listitem"><p> <code class="filename">initrd.gz</code> (het initiële ramschijf-image) </p></li>
+</ul></div>
+<p> U kunt ofwel de tekstuele of de grafische versie van het installatiesysteem kiezen. Die laatste vindt u in de onderliggende map <code class="filename">gtk</code>. Indien u de bestanden wenst te hernoemen, moet u er rekening mee houden dat <code class="classname">syslinux</code> enkel met bestandsnamen van het type DOS (8.3) kan werken. </p>
+<p>Daarna moet u een configuratiebestand <code class="filename">syslinux.cfg</code> aanmaken. Dit moet als absolute minimum de volgende regel bevatten (verander de naam van het binaire bestand van de kernel in <span class="quote">“<span class="quote"><code class="filename">linux</code></span>”</span> als u een <code class="filename">netboot</code>-image gebruikte): </p>
+<div class="informalexample"><pre class="screen">
+default vmlinuz initrd=initrd.gz
+</pre></div>
+<p> Voor het grafische installatiesysteem moet u <strong class="userinput"><code>vga=788</code></strong> aan de regel toevoegen. Andere parameters kunnen desgewenst toegevoegd worden. </p>
+<p>Om van de opstartprompt gebruik te kunnen maken om nog andere parameters toe te voegen, voegt u een regel <strong class="userinput"><code>prompt 1</code></strong> toe. </p>
+<p>Indien u een <code class="filename">hd-media</code>-image gebruikte, moet u nu het ISO-bestand van een Debian ISO-image kopiëren<a href="#ftn.idm882" class="footnote" name="idm882"><sup class="footnote">[4]</sup></a> naar de stick. Koppel de USB geheugenstick af wanneer u klaar bent (<strong class="userinput"><code>umount /mnt</code></strong>). </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm830" class="footnote"><p><a href="#idm830" class="para"><sup class="para">[3] </sup></a> Vergeet niet om de <span class="quote">“<span class="quote">bootable</span>”</span> vlag in te stellen (dit maakt er een opstartpartitie van). </p></div>
+<div id="ftn.idm882" class="footnote"><p><a href="#idm882" class="para"><sup class="para">[4] </sup></a>U kunt ofwel een netinst- of een volledige CD-image gebruiken (zie <a class="xref" href="ch04s01.html" title="4.1. Officiële Debian GNU/Linux CD/DVD-sets">Paragraaf 4.1, “Officiële Debian GNU/Linux CD/DVD-sets”</a>). Zorg ervoor er een te selecteren dat er op past. Merk op dat u het <span class="quote">“<span class="quote">netboot <code class="filename">mini.iso</code></span>”</span>-image hiervoor niet kunt gebruiken. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Omhoog"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Bestanden downloaden van Debian spiegelservers </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Begin"></a></td>
+<td width="40%" align="right" valign="top"> 4.4. Bestanden voorbereiden om vanaf een harde schijf op te starten</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

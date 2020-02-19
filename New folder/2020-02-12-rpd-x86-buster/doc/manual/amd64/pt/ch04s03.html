@@ -1,0 +1,163 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Preparar Ficheiros para iniciar a partir de USB Memory Stick</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Guia de Instalação de Debian GNU/Linux">
+<link rel="up" href="ch04.html" title="Capítulo 4. Obter o Meio de Instalação do Sistema">
+<link rel="prev" href="ch04s02.html" title="4.2. Download dos Ficheiros a partir dos Mirrors Debian">
+<link rel="next" href="ch04s04.html" title="4.4. Preparar Ficheiros para Arrancar a Partir de Disco Rígido.">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Preparar Ficheiros para iniciar a partir de USB Memory Stick</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 4. Obter o Meio de Instalação do Sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Próximo"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-usb-files"></a>4.3. Preparar Ficheiros para iniciar a partir de USB Memory Stick</h2></div></div></div>
+<p>Para preparar o stick USB você irá necessitar dum sistema GNU/Linux que já esteja em funcionamento e onde seja suportado USB. Em sistemas GNU/Linux actuais a pen USB deve ser reconhecida automaticamente quando a inserir. Se não for o caso deve verificar se o módulo usb-storage está carregado. Quando a pen for inserida será mapeada para um dispositivo chamado <code class="filename">/dev/sdX</code>, onde <span class="quote">“<span class="quote">X</span>”</span> é uma letra na gama a-z. Deverá ser capaz de ver para qual dispositivo foi a 'pen' USB mapeada correndo o comando <span class="command"><strong>dmesg</strong></span> depois de a inserir. Para escrever para a sua 'pen', poderá ter de desligar o botão de protecção de escrita. </p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Atenção]" src="images/warning.png"></td>
+<th align="left">Atenção</th>
+</tr>
+<tr><td align="left" valign="top"><p>Os procedimentos descritos nesta secção irão destruir tudo o que já esteja no dispositivo! Assegure-se que utiliza o nome correcto do dispositivo para a sua 'pen' USB. Se utilizar o dispositivo errado o resultado poderá ser que toda a informação no, por exemplo, disco rígido seja perdida. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-isohybrid"></a>4.3.1. Preparar uma pen USB utilizando uma imagem híbrida de CD ou DVD</h3></div></div></div>
+<p>As imagens em CD e DVD de Debian podem agora ser escritas directamente para uma pen USB, que é uma forma muito fácil para fazer uma pen USB de arranque. Simplesmente escolha uma imagem de CD ou DVD (tal como a netinst, CD-1, DVD-1, ou netboot) que caiba na sua pen USB. Veja <a class="xref" href="ch04s01.html" title="4.1. Conjuntos Oficiais de CDs/DVDs Debian GNU/Linux">Secção 4.1, “Conjuntos Oficiais de CDs/DVDs Debian GNU/Linux”</a> para obter a imagem de CD ou de DVD. </p>
+<p>Em alternativa, para pens USB muito pequenas, com apenas alguns megabytes de tamanho, pode obter a imagem <code class="filename">mini.iso</code> a partir do directório <code class="filename">netboot</code> (no local mencionado em <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Onde Encontrar Imagens de Instalação">Secção 4.2.1, “Onde Encontrar Imagens de Instalação”</a>). </p>
+<p>A imagem de CD ou de DVD que escolher deve ser escrita directamente para a pen USB, sobreescrevendo o seu conteúdo actual. Por exemplo, ao utilizar um sistema GNU/Linux existente, o ficheiro da imagem de CD ou de DVD pode ser escrito para uma pen USB conforme se segue, depois de se ter assegurado que pen foi desmontada: </p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>cp <em class="replaceable"><code>debian.iso</code></em> /dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>sync</code></strong>
+</pre></div>
+<p> Pode ser encontrada sobre como fazer isto noutros sistemas operativos nas <a class="ulink" href="https://www.debian.org/CD/faq/index.en.html#write-usb" target="_top">Debian CD FAQ</a>. </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Importante]" src="images/important.png"></td>
+<th align="left">Importante</th>
+</tr>
+<tr><td align="left" valign="top"><p>A imagem tem que ser escrita para um dispositivo de disco inteiro e não para uma partição, e.g. /dev/sdb e não para /dev/sdb1. Não utilize ferramentas como o <span class="command"><strong>unetbootin</strong></span> que alterem a imagem. </p></td></tr>
+</table></div>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Importante]" src="images/important.png"></td>
+<th align="left">Importante</th>
+</tr>
+<tr><td align="left" valign="top"><p>Escrever simplesmente a imagem de CD ou de DVD para a pen USB desta forma deve resultar para a maioria dos utilizadores. As outras opções abaixo são mais completas, e orientadas para pessoas com necessidades mais especializadas. </p></td></tr>
+</table></div>
+<p>A imagem híbrida na pen não ocupa todo o espaço de armazenamento, por isso pode valer a pena considerar utilizar o espaço livre para colocar ficheiros de firmware ou pacotes ou quaisquer outros ficheiros à sua escolha. Isto pode ser útil se possuir apenas uma pen ou se quiser ter tudo o que necessita num dispositivo. </p>
+<p>Criar, na pen, uma segunda partição FAT, montar a partição e copiar ou desempacotar o firmware para lá. Por exemplo: </p>
+<div class="informalexample"><pre class="screen"># mount /dev/<em class="replaceable"><code>sdX2</code></em> /mnt
+# cd /mnt
+# tar zxvf <em class="replaceable"><code>/path/to/</code></em>firmware.tar.gz
+# cd /
+# umount /mnt
+</pre></div>
+<p>
+
+</p>
+<p>Poderá ter escrito o <code class="filename">mini.iso</code> para a pen USB. Neste caso a segunda partição não tem de ser criada e já estará presente. Retirar a voltar a colocar a pen USB deverá tornar as duas partições visíveis. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-easy"></a>4.3.2. Copiar manualmente os ficheiros para a pen USB</h3></div></div></div>
+<p>Uma forma alternativa para preparar a sua pen USB é copiar manualmente os ficheiros do instalador, assim como uma imagem de CD para a pen. Note que a pen USB deverá ter no mínimo 1 GB de tamanho (são possíveis configurações mais reduzidas se seguir a <a class="xref" href="ch04s03.html#usb-copy-flexible" title="4.3.3. Copiar ficheiros manualmente para a pen USB — a forma flexível">Secção 4.3.3, “Copiar ficheiros manualmente para a pen USB — a forma flexível”</a>). </p>
+<p>Existe um ficheiro tudo-em-um <code class="filename">hd-media/boot.img.gz</code> que contém todos os ficheiros do instalador (incluindo o kernel) <span class="phrase">assim como o <code class="classname">syslinux</code> e o seu ficheiro de configuração</span>  </p>
+<p>Note que, embora conveniente, este método tem uma grande desvantagem: a capacidade lógica do dispositivo será limitada a 1 GB, mesmo que a capacidade da pen USB seja maior. Terá de reparticionar a pen USB e criar sistema de ficheiros novos para obter novamente toda a capacidade se alguma vez a quiser utilizar para um propósito diferente. </p>
+<p>Para utilizar esta imagem simplesmente extraia-a directamente para a sua 'pen' USB: </p>
+<div class="informalexample"><pre class="screen"># zcat boot.img.gz &gt; /dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p>
+
+</p>
+<p>Depois disso, monte a pen USB <span class="phrase">(<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX</code></em> /mnt</code></strong>,</span>  que terá agora <span class="phrase">um sistema de ficheiros FAT</span> , e copie para lá uma imagem ISO Debian (netinst ou CD completo). Desmonte a pen (<strong class="userinput"><code>umount /mnt</code></strong>) e já está. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-flexible"></a>4.3.3. Copiar ficheiros manualmente para a pen USB — a forma flexível</h3></div></div></div>
+<p>Se gostar de mais flexibilidade ou se apenas quiser saber o que se está a passar, pode utilizar o seguinte método para colocar os ficheiros na sua 'pen'. Uma vantagem da utilização deste método é que — se a capacidade da sua 'pen' USB tiver espaço suficiente — tem a opção de copiar para lá qualquer imagem ISO, mesmo uma imagem de DVD. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm820"></a>4.3.3.1. Particionar a 'pen' USB</h4></div></div></div>
+<p>Iremos demonstrar como preparar o memory stick para utilizar a primeira partição, em vez de todo o dispositivo. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Dado que a maioria das 'pens' USB vêm preconfiguradas com uma única partição FAT16, provavelmente não terá  reparticionar ou reformatar a 'pen'. Se de qualquer forma tiver de o fazer, utilize o <span class="command"><strong>cfdisk</strong></span> ou qualquer outra ferramenta de particionamento para criar uma partição FAT16<a href="#ftn.idm826" class="footnote" name="idm826"><sup class="footnote">[3]</sup></a>, instalar um MBR utilizando: </p>
+<div class="informalexample"><pre class="screen">
+# install-mbr /dev/<em class="replaceable"><code>sdX</code></em>
+</pre></div>
+<p> O comando <span class="command"><strong>install-mbr</strong></span> faz parte do pacote Debian <code class="classname">mbr</code>. De seguida criar o sistema de ficheiros: </p>
+<div class="informalexample"><pre class="screen">
+# mkdosfs /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Certifique-se de que utiliza o nome correcto do dispositivo para a sua 'pen' USB. O comando <span class="command"><strong>mkdosfs</strong></span> está no pacote Debian <code class="classname">dosfstools</code>. </p>
+</td></tr>
+</table></div>
+<p>Com o intuito de iniciar o kernel após arrancar a partir da 'pen' USB, nós iremos colocar o gestor de arranque na 'pen'. Apesar de qualquer gestor de arranque deva funcionar (por exemplo o <span class="command"><strong>lilo</strong></span>), é conveniente utilizar o <span class="command"><strong>syslinux</strong></span>, dado que utiliza uma partição FAT16 e pode ser reconfigurado apenas editando um ficheiro de texto. Qualquer sistema operativo que suporte um sistema de ficheiros FAT pode ser utilizado para fazer alterações à configuração do gestor de arranque. </p>
+<p>Para colocar o <span class="command"><strong>syslinux</strong></span> na partição FAT16 da sua 'pen' USB, instale os pacotes <code class="classname">syslinux</code> e <code class="classname">mtools</code> no seu sistema, e faça: </p>
+<div class="informalexample"><pre class="screen">
+# syslinux /dev/<em class="replaceable"><code>sdX1</code></em>
+</pre></div>
+<p> Mais uma vez certifique-se de que utiliza o nome correcto do dispositivo. A partição não pode estar montada quando iniciar o <span class="command"><strong>syslinux</strong></span>. Este procedimento escreve um sector de arranque para a partição e cria o ficheiro <code class="filename">ldlinux.sys</code> que contém o código do gestor de arranque. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm851"></a>4.3.3.2. Acrescentar a imagem do instalador</h4></div></div></div>
+<p>Monte a partição (<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX1</code></em> /mnt</code></strong>) e copie os seguintes ficheiros de imagens do instalador para a 'pen': </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> <code class="filename">vmlinuz</code> ou <code class="filename">linux</code> (binário do kernel) </p></li>
+<li class="listitem"><p> <code class="filename">initrd.gz</code> (imagem ramdisk inicial) </p></li>
+</ul></div>
+<p> Pode escolher entre a versão normal ou a versão em modo de texto do instalador. A última pode ser encontrada no subdirectório <code class="filename">gtk</code>. Se quiser renomear os ficheiros, note que o <span class="command"><strong>syslinux</strong></span> apenas consegue processar nomes de ficheiros DOS (8.3). </p>
+<p>De seguida deverá criar um ficheiro de configuração <code class="filename">syslinux.cfg</code> o qual, no mínimo, deve conter as seguintes linhas (mude o nome do binário do kernel para <span class="quote">“<span class="quote"><code class="filename">linux</code></span>”</span> se utilizou uma imagem <code class="filename">netboot</code>): </p>
+<div class="informalexample"><pre class="screen">
+default vmlinuz initrd=initrd.gz
+</pre></div>
+<p> Para o instalador gráfico deve acrescentar <strong class="userinput"><code>vga=788</code></strong> à linha. Podem ser acrescentados outros parâmetros conforme for desejado. </p>
+<p>Para activar a prompt de arranque para permitir acrescentar mais parâmetros, acrescente uma linha <strong class="userinput"><code>prompt 1</code></strong>. </p>
+<p>Se utilizou uma imagem <code class="filename">hd-media</code>, deve agora copiar o ficheiro ISO de uma imagem ISO Debian<a href="#ftn.idm878" class="footnote" name="idm878"><sup class="footnote">[4]</sup></a> para a pen, desmonte a pen USB (<strong class="userinput"><code>umount /mnt</code></strong>). </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm826" class="footnote"><p><a href="#idm826" class="para"><sup class="para">[3] </sup></a> Não se esqueça de definir a flag de arranque <span class="quote">“<span class="quote">bootable</span>”</span>. </p></div>
+<div id="ftn.idm878" class="footnote"><p><a href="#idm878" class="para"><sup class="para">[4] </sup></a> Pode utilizar uma imagem de CD netinst ou de CD completo (veja <a class="xref" href="ch04s01.html" title="4.1. Conjuntos Oficiais de CDs/DVDs Debian GNU/Linux">Secção 4.1, “Conjuntos Oficiais de CDs/DVDs Debian GNU/Linux”</a>). Assegure-se que escolhe uma que cabe. Tenha em conta que a imagem <span class="quote">“<span class="quote">netboot <code class="filename">mini.iso</code></span>”</span> não é utilizável para este propósito. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Próximo"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Download dos Ficheiros a partir dos Mirrors Debian </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Início"></a></td>
+<td width="40%" align="right" valign="top"> 4.4. Preparar Ficheiros para Arrancar a Partir de Disco Rígido.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

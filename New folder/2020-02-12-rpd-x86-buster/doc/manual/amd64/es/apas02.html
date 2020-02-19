@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.2. Arrancar el instalador</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Guía de instalación de Debian GNU/Linux">
+<link rel="up" href="apa.html" title="Apéndice A. CÓMO de instalación">
+<link rel="prev" href="apas01.html" title="A.1. Preliminares">
+<link rel="next" href="apas03.html" title="A.3. Instalación">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.2. Arrancar el instalador</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apas01.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Apéndice A. CÓMO de instalación</th>
+<td width="20%" align="right"> <a accesskey="n" href="apas03.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="howto-getting-images"></a>A.2. Arrancar el instalador</h2></div></div></div>
+<p> El equipo debian-cd construye imágenes de CD que utilizan <code class="classname">debian-installer</code> y están disponibles en la <a class="ulink" href="https://www.debian.org/CD/" target="_top">página de Debian CD</a>. Para obtener más información sobre dónde obtener CDs, consulte <a class="xref" href="ch04s01.html" title="4.1. Juegos oficiales de CD/DVD-ROM de Debian GNU/Linux">Sección 4.1, “Juegos oficiales de CD/DVD-ROM de Debian GNU/Linux”</a>. </p>
+<p>Algunos métodos de instalación requieren imágenes distintas a las de los CD.  <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Dónde encontrar las imágenes de instalación">Sección 4.2.1, “Dónde encontrar las imágenes de instalación”</a> explica como encontrar imágenes en las réplicas de Debian. </p>
+<p>Las siguientes subsecciones dan más detalles sobre las imágenes que debería obtener dependiendo del mecanismo de instalación que vaya a utilizar. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-cdrom"></a>A.2.1. CDROM</h3></div></div></div>
+<p>La imagen de CD «netinst» es una imagen popular que se puede utilizar para instalar buster con el <code class="classname">debian-installer</code>. Esta imagen está diseñada de forma que puede arrancar desde el CD e instalar los paquetes adicionales que desee a través de la red, de ahí el nombre «netinst». La imagen incluye los componentes de software necesarios para ejectuar el instalador, y los paquetes base necesarios para proporcionar un sistema mínimo buster. Si lo desea, puede obtener una imagen de CD completa que no necesite disponer de una red para poder llevar a cabo la instalación. Para esto sólo necesitará utilizar el primer CD del conjunto de CDs de Debian. </p>
+<p>Descargue la imagen que prefiera y grábela en un CD. <span class="phrase">Para arrancar el CD, puede que necesite modificar la configuración de su BIOS, como se detalla en <a class="xref" href="ch03s06.html#bios-setup" title="3.6.1. Utilización del menú de configuración de la BIOS">Sección 3.6.1, “Utilización del menú de configuración de la BIOS”</a>.</span>  </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-usb"></a>A.2.2. Dispositivo de memoria USB</h3></div></div></div>
+<p>También es posible realizar la instalación desde un dispositivo de almacenamiento USB extraíble. Un llavero USB puede ser un medio de instalación de Debian bastante útil gracias a que puede llevarlo consigo a cualquier lugar. </p>
+<p>La forma más fácil de preparar su dispositivo de memoria USB es descargar cualquier imagen de CD o DVD de Debian que quiera utilizar y después escribir la imagen de CD directamente en la memoria USB. Tenga en cuenta que se perderán todos los datos que se encuentren en el dispositivo. Esto es posible debido a que las imágenes de los CD de Debian son imágenes ISO «híbridas» que se pueden iniciar tanto desde un lector de CD como desde memorias USB. </p>
+<p>Existen otras formas más flexibles de configurar un dispositivo de memoria para usar el instalador de Debian, y es posible hacerlo funcionar con dispositivos de menor capacidad. Para más detalles, vea <a class="xref" href="ch04s03.html" title="4.3. Preparación de ficheros para el arranque desde un dispositivo de memoria USB">Sección 4.3, “Preparación de ficheros para el arranque desde un dispositivo de memoria USB”</a>. </p>
+<p>Some BIOSes can boot USB storage directly, and some cannot. You may need to configure your BIOS to enable <span class="quote">“<span class="quote">USB legacy support</span>”</span>. The boot device selection menu should show <span class="quote">“<span class="quote">removable drive</span>”</span> or <span class="quote">“<span class="quote">USB-HDD</span>”</span> to get it to boot from the USB device. For helpful hints and details, see <a class="xref" href="ch05s01.html#usb-boot-x86" title="5.1.1. Arranque desde un dispositivo de memoria USB">Sección 5.1.1, “Arranque desde un dispositivo de memoria USB”</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-netboot"></a>A.2.3. Arranque desde la red</h3></div></div></div>
+<p>También es posible arrancar el <code class="classname">debian-installer</code> completamente desde la red. Los diversos métodos de arranque de red dependen de su arquitectura y configuración de arranque desde red. Los ficheros en <code class="filename">netboot/</code> pueden usarse para arrancar el <code class="classname">debian-installer</code> desde la red. </p>
+<p>La forma más fácil de configurar el arranque desde red probablemente sea usando PXE. Extraiga el fichero <code class="filename">netboot/pxeboot.tar.gz</code> en <code class="filename">/srv/tftp</code> o donde sea apropiado para su servidor tftp. Configure su servidor DHCP para pasar el fichero <code class="filename">pxelinux.0</code> a los clientes, y, con suerte, todo funcionará correctamente. Para instrucciones detalladas, vea <a class="xref" href="ch04s05.html" title="4.5. Preparación de los ficheros para el arranque a través de red usando TFTP">Sección 4.5, “Preparación de los ficheros para el arranque a través de red usando TFTP”</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-hard-disk"></a>A.2.4. Arrancar desde un disco duro</h3></div></div></div>
+<p>Es posible arrancar el instalador sin usar medios extraíbles, pero sólo si dispone de un disco duro existente, el cual puede tener un sistema operativo diferente. Descargue <code class="filename">hd-media/initrd.gz</code>, <code class="filename">hd-media/vmlinuz</code>, y una imagen de CD de Debian en el directorio de nivel más alto en el disco duro. Asegúrese de que la imagen de CD tiene un nombre de fichero que termine en <code class="literal">.iso</code>. Ahora sólo es cuestión de arrancar linux con initrd. <span class="phrase"> <a class="xref" href="ch05s01.html#boot-initrd" title="5.1.5. Arranque desde Linux utilizando LILO o GRUB">Sección 5.1.5, “Arranque desde Linux utilizando <span class="command"><strong>LILO</strong></span> o <span class="command"><strong>GRUB</strong></span>”</a> explica una forma de hacerlo. </span> </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apas01.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apa.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apas03.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.1. Preliminares </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> A.3. Instalación</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

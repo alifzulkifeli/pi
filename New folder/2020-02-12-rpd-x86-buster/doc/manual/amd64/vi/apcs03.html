@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.3. Bố trí phân vùng khuyến khích</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Sổ tay Cài đặt Debian GNU/Linux">
+<link rel="up" href="apc.html" title="Phụ lục C. Phân vùng cho Debian">
+<link rel="prev" href="apcs02.html" title="C.2. Cây thư mục">
+<link rel="next" href="apcs04.html" title="C.4. Tên thiết bị dưới Linux">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.3. Bố trí phân vùng khuyến khích</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs02.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<th width="60%" align="center">Phụ lục C. Phân vùng cho Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apcs04.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm4027"></a>C.3. Bố trí phân vùng khuyến khích</h2></div></div></div>
+<p>Đối với người dùng mới, máy tính Debian cá nhân, hệ thống ở nhà, và các thiết lập người đơn khác, một phân vùng <code class="filename">/</code> riêng lẻ (thêm vào là vùng trao đổi) rất có thể là cách làm dễ dàng nhất. Tuy nhiên, nếu bạn có phân vùng lớn hơn khoảng 6 GB, hãy chọn « ext3 » là kiểu phân vùng. Phân vùng kiểu « ext2 » cần thiết được kiểm tra theo định kỷ (tính nguyên vẹn hệ thống tập tin) mà có thể gây ra tiến trình khởi động bị hoãn trên phân vùng lớn. </p>
+<p>Còn đối với hệ thống đa người dùng, hay hệ thống có rất nhiều sức chứa trên đĩa, tốt nhất là để mỗi thư mục <code class="filename">/var</code>, <code class="filename">/tmp</code>, và <code class="filename">/home</code> trên một phân vùng riêng, khác với phân vùng <code class="filename">/</code> (5 phân vùng). </p>
+<p>Có thể là yêu cầu một phân vùng <code class="filename">/usr/local</code> riêng nếu bạn định cài đặt nhiều chương trình không thuộc về bản phát hành Debian. Nếu máy tính của bạn sẽ chạy trình phục vụ thư tín, bạn có thể cần phải lập thư mục <code class="filename">/var/mail</code> là một phân vùng riêng. Bình thường, việc để thư mục <code class="filename">/tmp</code> trên một phân vùng riêng (v.d. 20-50 MB) là một ý kiến tốt. Nếu bạn đang thiết lập một máy phục vụ có nhiều tài khoản người dùng, thường có ích khi tạo một phân vùng <code class="filename">/home</code> lớn riêng. Nói chung, trường hợp cấu hình phân vùng thay đổi từ máy tính này đến máy tính khác, phụ thuộc vào cách sử dụng. </p>
+<p>Đối với hệ thống rất phức tạp, bạn nên xem tài liệu Đa Đĩa Thế Nào <a class="ulink" href="http://www.tldp.org/HOWTO/Multi-Disk-HOWTO.html" target="_top">Multi Disk HOWTO</a>. Nó chứa thông tin chi tiết, phần lớn có ích cho nhà cung cấp dịch vụ Mạng và người thiết lập máy phục vụ. </p>
+<p>Có nhiều ý kiến khác nhau về kích cỡ thích hợp của phân vùng trao đổi. Theo kinh nghiệm, có ích để cấu hình vùng trao đổi có cùng một kích cỡ với bộ nhớ hệ thống. Trong phần lớn trường hợp, kích cỡ tối thiểu là 16 MB. Tất nhiên những quy tắc này có ngoại lệ: nếu bạn đang thử giải 1000 phương trình đồng thời trên máy tính có chỉ 256 MB bộ nhớ, bạn có thể cần thiết 1 GB vùng trao đổi. </p>
+<p>Với một vài kiến trúc kiểu 32-bit (m68k và PowerPC), kích cỡ tối đa của phân vùng trao đổi là 2 GB. Chừng đó là đủ cho gần như bất kỳ bản cài đặt nào. Tuy nhiên, nếu bạn cần vùng trao đổi lớn như vậy, rất có thể là bạn nên thử chia vùng trao đổi ra nhiều đĩa khác nhau (cũng được gọi như là <span class="quote">“<span class="quote">spindle</span>”</span>) và, nếu có thể, ra nhiều kênh SCSI hay IDE khác nhau. Hạt nhân sẽ cân bằng cách sử dụng vùng trao đổi giữa nhiều phân vùng trao đổi, làm cho hiệu suất tốt hơn. </p>
+<p>Lấy thí dụ, một máy tính cũ hơn ở nhà có 32 MB RAM và đĩa cứng IDE 1.7 GB trên <code class="filename">/dev/sda</code>. Có một phân vùng 500 MB cho hệ điều hành khác trên <code class="filename">/dev/sda1</code>, một phân vùng trao đổi 32 MB trên <code class="filename">/dev/sda3</code> và khoảng 1.2 GB phân vùng Linux trên <code class="filename">/dev/sda2</code>. </p>
+<p>Để tìm biết sức chứa được chiếm bởi công việc bạn có thể muốn thêm sau khi cài đặt xong hệ thống, xem <a class="xref" href="apds02.html" title="D.2. Sức chứa trên đĩa cần thiết cho công việc">Phần D.2, “Sức chứa trên đĩa cần thiết cho công việc”</a>. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs02.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Lên"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apcs04.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.2. Cây thư mục </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Đầu"></a></td>
+<td width="40%" align="right" valign="top"> C.4. Tên thiết bị dưới Linux</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

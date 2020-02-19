@@ -1,0 +1,424 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>D.3. Installera Debian GNU/Linux från ett Unix/Linux-system</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Installationsguide för Debian GNU/Linux">
+<link rel="up" href="apd.html" title="Appendix D. Diverse bitar">
+<link rel="prev" href="apds02.html" title="D.2. Nödvändig diskplats för funktioner">
+<link rel="next" href="apds04.html" title="D.4. Installera Debian GNU/Linux över Parallel Line IP (PLIP)">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">D.3. Installera Debian GNU/Linux från ett Unix/Linux-system</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apds02.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Appendix D. Diverse bitar</th>
+<td width="20%" align="right"> <a accesskey="n" href="apds04.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="linux-upgrade"></a>D.3. Installera Debian GNU/Linux från ett Unix/Linux-system</h2></div></div></div>
+<p>Det här avsnittet förklarar hur man installerar Debian GNU/Linux från ett befintligt Unix- eller Linux-system, utan att använda det menystyrda installationsprogrammet som förklaras i resten av handboken. Den här HOWTO:n för <span class="quote">”<span class="quote">cross-installation</span>”</span> har efterfrågats av användare som byter till Debian GNU/Linux från Red Hat, Mandriva och SUSE. I detta avsnitt antas att viss erfarenhet av *nix-kommandon och navigering i filsystemet. I detta avsnitt symboliserar <code class="prompt">$</code> ett kommando som ska anges i användarens aktuella system, medan <code class="prompt">#</code> refererar till ett kommando som ska anges i Debians chroot-miljö. </p>
+<p>När du har fått det nya Debian-systemet konfigurerat enligt din smak, kan du migrera din befintliga användardata (om den finns) till det, och fortsätta köra. Det här är alltså en installation av Debian GNU/Linux <span class="quote">”<span class="quote">utan nedtid</span>”</span>. Det är också ett klurigt sätt att hantera maskinvara som annars inte fungerar snällt med olika uppstarts- eller installationsmedia. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top"><p>Eftersom det här till största del är en manuell procedur bör du tänka på att du kommer att behöva göra en hel del grundläggande konfiguration av själva systemet själv, vilket även kräver mer kunskaper om Debian och speciellt Linux i allmänhet än att genomföra en vanlig installation. Du kan inte förvänta dig att denna procedur resulterar i ett system som är identiskt med ett system från en vanlig installation. Du bör även tänka på att denna procedur endast ger de grundläggande stegen för att konfigurera ett system. Ytterligare installation och/eller konfigurationssteg kan behövas. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4312"></a>D.3.1. Påbörja arbetet</h3></div></div></div>
+<p>With your current *nix partitioning tools, repartition the hard drive as needed, creating at least one filesystem plus swap. You need around 701MB of space available for a console only install, or about 2486MB if you plan to install X (more if you intend to install desktop environments like GNOME or KDE Plasma). </p>
+<p>Skapa sedan filsystem på dina partitioner. För att till exempel skapa ett ext3-filsystem på partitionen <code class="filename">/dev/sda6</code> (det är vår rotpartition i exemplet): </p>
+<div class="informalexample"><pre class="screen">
+# mke2fs -j /dev/<em class="replaceable"><code>sda6</code></em>
+</pre></div>
+<p> För att istället skapa ett ext2-filsystem, uteslut <strong class="userinput"><code>-j</code></strong>. </p>
+<p>Initialisera och aktivera växlingsutrymmet (ersätt partitionsnumret med din tilltänkta Debian-partition för växlingsutrymme): </p>
+<div class="informalexample"><pre class="screen">
+# mkswap /dev/<em class="replaceable"><code>sda5</code></em>
+# sync
+# swapon /dev/<em class="replaceable"><code>sda5</code></em>
+</pre></div>
+<p> Montera en partition som <code class="filename">/mnt/debinst</code> (installationspunkten, som ska vara rotfilsystemet (<code class="filename">/</code>)  på ditt nya system). Namnet på monteringspunkten är strikt godtyckligt, det refereras till senare här nedan. </p>
+<div class="informalexample"><pre class="screen"># mkdir /mnt/debinst
+# mount /dev/<em class="replaceable"><code>sda6</code></em> /mnt/debinst
+</pre></div>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notera]" src="images/note.png"></td>
+<th align="left">Notera</th>
+</tr>
+<tr><td align="left" valign="top"><p>Om du vill ha delar av filsystemet (exempelvis, /usr) monterat på separata partitioner, behöver du skapa och montera dessa kataloger manuellt innan du fortsätter till nästa steg. </p></td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4333"></a>D.3.2. Installera <span class="command"><strong>debootstrap</strong></span>
+</h3></div></div></div>
+<p>Verktyget som Debian Installer använder, som är känt som det officiella sättet att installera Debians grundsystem, är <span class="command"><strong>debootstrap</strong></span>. Det använder <span class="command"><strong>wget</strong></span> och <span class="command"><strong>ar</strong></span>, men är annars endast beroende av <code class="classname">/bin/sh</code> och grundläggande Unix/Linux-verktyg<a href="#ftn.idm4341" class="footnote" name="idm4341"><sup class="footnote">[25]</sup></a>. Installera <span class="command"><strong>wget</strong></span> och <span class="command"><strong>ar</strong></span> om de inte redan finns på ditt aktuella system, hämta och installera sedan <span class="command"><strong>debootstrap</strong></span>. </p>
+<p>Eller så kan du använda följande procedur för att installera det manuellt. Skapa en arbetskatalog för att extrahera .deb-filen till: </p>
+<div class="informalexample"><pre class="screen">
+# mkdir arbetskatalog
+# cd arbetskatalog
+</pre></div>
+<p> Binärfilen <span class="command"><strong>debootstrap</strong></span> finns i Debian-arkivet (se till att välja den lämpliga filen för din arkitektur). Hämta .deb-filen för <span class="command"><strong>debootstrap</strong></span> från <a class="ulink" href="http://ftp.debian.org/debian/pool/main/d/debootstrap/" target="_top"> pool</a>, kopiera paketet till arbetskatalogen, och extrahera filerna från det. Du kommer att behöva root-privilegier för att installera filerna. </p>
+<div class="informalexample"><pre class="screen"># ar -x debootstrap_0.X.X_all.deb
+# cd /
+# zcat /fullständig-sökväg-till-arbetskatalog/arbetskatalog/data.tar.gz | tar xv
+</pre></div>
+<p>
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4358"></a>D.3.3. Kör <span class="command"><strong>debootstrap</strong></span>
+</h3></div></div></div>
+<p><span class="command"><strong>debootstrap</strong></span> kan hämta de nödvändiga filerna direkt från arkivet när du kör det. Du kan ersätta <strong class="userinput"><code>ftp.se.debian.org/debian</code></strong> med vilken Debian-arkivspegel som du vill i kommandoexemplet nedan, föredragsvis en spegel som är så nära ditt nätverk som möjligt. Speglarna finns listade på <a class="ulink" href="http://www.debian.org/mirror/list" target="_top">http://www.debian.org/mirror/list</a>. </p>
+<p>Om du har en buster Debian GNU/Linux cd monterad på <code class="filename">/cdrom</code>, kan du ersätta en fil-url istället för en http-URL: <strong class="userinput"><code>file:/cdrom/debian/</code></strong> </p>
+<p>Substitute one of the following for <em class="replaceable"><code>ARCH</code></em> in the <span class="command"><strong>debootstrap</strong></span> command: <strong class="userinput"><code>amd64</code></strong>, <strong class="userinput"><code>arm64</code></strong>, <strong class="userinput"><code>armel</code></strong>, <strong class="userinput"><code>armhf</code></strong>, <strong class="userinput"><code>i386</code></strong>, <strong class="userinput"><code>mips</code></strong>, <strong class="userinput"><code>mips64el</code></strong>, <strong class="userinput"><code>mipsel</code></strong>, <strong class="userinput"><code>powerpc</code></strong>, <strong class="userinput"><code>ppc64el</code></strong>, or <strong class="userinput"><code>s390x</code></strong>. </p>
+<div class="informalexample"><pre class="screen">
+# /usr/sbin/debootstrap --arch ARCH buster \
+     /mnt/debinst http://ftp.us.debian.org/debian
+</pre></div>
+<p> If the target architecture is different than the host, you should add the <strong class="userinput"><code>--foreign</code></strong> option. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4385"></a>D.3.4. Konfigurera grundsystemet</h3></div></div></div>
+<p>Now you've got a real Debian system, though rather lean, on disk. <span class="command"><strong>chroot</strong></span> into it: </p>
+<div class="informalexample"><pre class="screen">
+# LANG=C.UTF-8 chroot /mnt/debinst /bin/bash
+</pre></div>
+<p> If the target architecture is different from the host, you will need to first copy qemu-user-static to the new host: </p>
+<div class="informalexample"><pre class="screen">
+# cp /usr/bin/qemu-ARCH-static /mnt/debinst/usr/bin
+# LANG=C.UTF-8 chroot /mnt/debinst qemu-ARCH-static /bin/bash
+</pre></div>
+<p> After chrooting you may need to set the terminal definition to be compatible with the Debian base system, for example: </p>
+<div class="informalexample"><pre class="screen">
+# export TERM=<em class="replaceable"><code>xterm-color</code></em>
+</pre></div>
+<p> Depending on the value of TERM, you may have to install the <code class="classname">ncurses-term</code> package to get support for it. </p>
+<p>If the target architecture is different from the host, you need to finish the multi-stage boot strap: </p>
+<div class="informalexample"><pre class="screen">/debootstrap/debootstrap --second-stage
+</pre></div>
+<p>
+
+</p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm4400"></a>D.3.4.1. Skapa enhetsfiler</h4></div></div></div>
+<p>Vid det här tillfället innehåller <code class="filename">/dev/</code> endast mycket grundläggande enhetsfiler. För nästkommande steg av installationen kan ytterligare enhetsfiler behövas. Det finns olika sätt att göra detta på och vilken metod som du väljer beror på värdsystemet som du använder för installationen, om du tänker använda en modulär kärna eller inte och om du tänker använda dynamisk (t.ex. använda <code class="classname">udev</code>) eller statiska enhetsfiler för det nya systemet. </p>
+<p>Ett par av de tillgängliga alternativen är: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>installera makedev-paketet och skapa en standarduppsättning med statiska enhetsfiler (efter chroot) </p>
+<div class="informalexample"><pre class="screen"># apt install makedev
+# mount none /proc -t proc
+# cd /dev
+# MAKEDEV generic
+</pre></div>
+<p>
+
+</p>
+</li>
+<li class="listitem"><p>skapa manuellt endast specifika enhetsfiler med <span class="command"><strong>MAKEDEV</strong></span> </p></li>
+<li class="listitem"><p>bindmontera /dev från ditt värdsystem på toppen av /dev i målsystemet; observera att postinst-skripten för vissa paket kan försöka att skapa enhetsfiler, så detta alternativ ska endast användas med försiktighet </p></li>
+</ul></div>
+<p>
+
+</p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm4416"></a>D.3.4.2. Montera partitioner</h4></div></div></div>
+<p>Du måste skapa <code class="filename">/etc/fstab</code>. </p>
+<div class="informalexample"><pre class="screen">
+# editor /etc/fstab
+</pre></div>
+<p> Här är ett exempel som du kan ändra på för att passa in: </p>
+<div class="informalexample"><pre class="screen">
+# /etc/fstab: statisk filsystemsinformation.
+#
+# filsystem      monteringsp.  typ     flaggor                  dump pass
+/dev/XXX         /             ext3    defaults                 0    1
+/dev/XXX         /boot         ext3    ro,nosuid,nodev          0    2
+
+/dev/XXX         none          swap    sw                       0    0
+proc             /proc         proc    defaults                 0    0
+
+/dev/fd0         /media/floppy auto    noauto,rw,sync,user,exec 0    0
+/dev/cdrom       /media/cdrom  iso9660 noauto,ro,user,exec      0    0
+
+/dev/XXX         /tmp          ext3    rw,nosuid,nodev          0    2
+/dev/XXX         /var          ext3    rw,nosuid,nodev          0    2
+/dev/XXX         /usr          ext3    rw,nodev                 0    2
+/dev/XXX         /home         ext3    rw,nosuid,nodev          0    2
+</pre></div>
+<p> Använd <strong class="userinput"><code>mount -a</code></strong> för att montera alla filsystem som du har angivna i din <code class="filename">/etc/fstab</code>, eller använd följande kommando för att montera filsystem individuellt: </p>
+<div class="informalexample"><pre class="screen">
+# mount /path   # exempelvis: mount /usr
+</pre></div>
+<p> Nuvarande Debian-system har monteringspunkter för flyttbara media under <code class="filename">/media</code>, men innehåller symboliska länkar <code class="filename">/</code> för att vara kompatibla. Skapa dessa efter behov, till exempel: </p>
+<div class="informalexample"><pre class="screen">
+# cd /media
+# mkdir cdrom0
+# ln -s cdrom0 cdrom
+# cd /
+# ln -s media/cdrom
+</pre></div>
+<p> Du kan montera proc-filsystemet flera gånger till godtyckliga platser, även om <code class="filename">/proc</code> är vanligast. Om du inte använde <strong class="userinput"><code>mount -a</code></strong>, tänk på att montera proc innan du fortsätter: </p>
+<div class="informalexample"><pre class="screen"># mount -t proc proc /proc
+</pre></div>
+<p>
+
+</p>
+<p>Kommandot <strong class="userinput"><code>ls /proc</code></strong> bör nu visa en icke-tom katalog. Om det här skulle misslyckas, kan du kanske montera proc utanför chroot: </p>
+<div class="informalexample"><pre class="screen"># mount -t proc proc /mnt/debinst/proc
+</pre></div>
+<p>
+
+</p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm4440"></a>D.3.4.3. Ställ in tidszon</h4></div></div></div>
+<p>Setting the third line of the file <code class="filename">/etc/adjtime</code> to <span class="quote">”<span class="quote">UTC</span>”</span> or <span class="quote">”<span class="quote">LOCAL</span>”</span> determines whether the system will interpret the hardware clock as being set to UTC respective local time. The following command allows you to set that. </p>
+<div class="informalexample"><pre class="screen">
+# editor /etc/adjtime
+</pre></div>
+<p> Here is a sample: </p>
+<div class="informalexample"><pre class="screen">
+0.0 0 0.0
+0
+UTC
+</pre></div>
+<p> The following command allows you to choose your timezone. </p>
+<div class="informalexample"><pre class="screen"># dpkg-reconfigure tzdata
+</pre></div>
+<p>
+
+</p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm4452"></a>D.3.4.4. Konfigurera nätverket</h4></div></div></div>
+<p>To configure networking, edit <code class="filename">/etc/network/interfaces</code>, <code class="filename">/etc/resolv.conf</code>, <code class="filename">/etc/hostname</code> and <code class="filename">/etc/hosts</code>. </p>
+<div class="informalexample"><pre class="screen">
+# editor /etc/network/interfaces
+</pre></div>
+<p> Here are some simple examples from <code class="filename">/usr/share/doc/ifupdown/examples</code>: </p>
+<div class="informalexample"><pre class="screen">
+######################################################################
+# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
+# See the interfaces(5) manpage for information on what options are
+# available.
+######################################################################
+
+# The loopback interface isn't really required any longer, but can be used
+# if needed.
+#
+# auto lo
+# iface lo inet loopback
+
+# To use dhcp:
+#
+# auto eth0
+# iface eth0 inet dhcp
+
+# An example static IP setup: (network, broadcast and gateway are optional)
+#
+# auto eth0
+# iface eth0 inet static
+#     address 192.168.0.42
+#     network 192.168.0.0
+#     netmask 255.255.255.0
+#     broadcast 192.168.0.255
+#     gateway 192.168.0.1
+</pre></div>
+<p> Enter your nameserver(s) and search directives in <code class="filename">/etc/resolv.conf</code>: </p>
+<div class="informalexample"><pre class="screen">
+# editor /etc/resolv.conf
+</pre></div>
+<p> A simple example <code class="filename">/etc/resolv.conf</code>: </p>
+<div class="informalexample"><pre class="screen">
+search example.com
+nameserver 10.1.1.36
+nameserver 192.168.9.100
+</pre></div>
+<p> Enter your system's host name (2 to 63 characters): </p>
+<div class="informalexample"><pre class="screen">
+# echo DebianHostName &gt; /etc/hostname
+</pre></div>
+<p> And a basic <code class="filename">/etc/hosts</code> with IPv6 support: </p>
+<div class="informalexample"><pre class="screen">
+127.0.0.1 localhost
+127.0.1.1 DebianHostName
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+</pre></div>
+<p> If you have multiple network cards, you should arrange the names of driver modules in the <code class="filename">/etc/modules</code> file into the desired order. Then during boot, each card will be associated with the interface name (eth0, eth1, etc.) that you expect. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm4476"></a>D.3.4.5. Konfigurera apt</h4></div></div></div>
+<p>Debootstrap will have created a very basic <code class="filename">/etc/apt/sources.list</code> that will allow installing additional packages. However, you may want to add some additional sources, for example for source packages and security updates: </p>
+<div class="informalexample"><pre class="screen">
+deb-src http://ftp.us.debian.org/debian buster main
+
+deb http://security.debian.org/ buster/updates main
+deb-src http://security.debian.org/ buster/updates main
+</pre></div>
+<p> Make sure to run <strong class="userinput"><code>apt update</code></strong> after you have made changes to the sources list. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm4483"></a>D.3.4.6. Konfigurera lokaler och tangentbord</h4></div></div></div>
+<p>To configure your locale settings to use a language other than English, install the <code class="classname">locales</code> support package and configure it. Currently the use of UTF-8 locales is recommended. </p>
+<div class="informalexample"><pre class="screen">
+# apt install locales
+# dpkg-reconfigure locales
+</pre></div>
+<p> To configure your keyboard (if needed): </p>
+<div class="informalexample"><pre class="screen"># apt install console-setup
+# dpkg-reconfigure keyboard-configuration 
+</pre></div>
+<p>
+
+</p>
+<p>Observera att tangentbordet inte kan ställas in när chroot används men kommer att konfigureras inför nästa omstart. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4492"></a>D.3.5. Installera en kärna</h3></div></div></div>
+<p>Om du tänker starta upp det här systemet, vill du antagligen ha en Linux-kärna och en starthanterare. Identifiera tillgängliga förpaketerade kärnor med: </p>
+<div class="informalexample"><pre class="screen"># apt search linux-image
+</pre></div>
+<p>
+
+</p>
+<p>Installera sedan det kärnpaket som du önskar med hjälp av dess paketnamn. </p>
+<div class="informalexample"><pre class="screen"># apt install linux-image-<em class="replaceable"><code>arch-etc</code></em>
+</pre></div>
+<p>
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4501"></a>D.3.6. Ställ in starthanteraren</h3></div></div></div>
+<p>To make your Debian GNU/Linux system bootable, set up your boot loader to load the installed kernel with your new root partition. Note that <span class="command"><strong>debootstrap</strong></span> does not install a boot loader, but you can use <span class="command"><strong>apt</strong></span> inside your Debian chroot to do so. </p>
+<p>Se <strong class="userinput"><code>info grub</code></strong> <span class="phrase">eller <strong class="userinput"><code>man lilo.conf</code></strong></span>  för instruktioner om hur man ställer in starthanteraren. Om du behåller systemet du använde för att installera Debian, lägg bara till en post för Debian-installationen till din befintliga grub2 <code class="filename">grub.cfg</code><span class="phrase"> eller <code class="filename">lilo.conf</code>. När det gäller <code class="filename">lilo.conf</code> kan du även kopiera den till det nya systemet och redigera den där. Efter att du är klar med redigeringen, anropa <span class="command"><strong>lilo</strong></span> (kom ihåg att den använder <code class="filename">lilo.conf</code> relativt till systemet du anropar det från)</span>. </p>
+<p>Installing and setting up <code class="classname">grub2</code> is as easy as: </p>
+<div class="informalexample"><pre class="screen">
+# apt install grub-pc
+# grub-install /dev/<em class="replaceable"><code>sda</code></em>
+# update-grub
+</pre></div>
+<p> The second command will install <span class="command"><strong>grub2</strong></span> (in this case in the MBR of <code class="literal">sda</code>). The last command will create a sane and working <code class="filename">/boot/grub/grub.cfg</code>. </p>
+<p>Observera att detta antar att enhetsfilen <code class="filename">/dev/sda</code> har skapats. Det finns alternativa metoder för att installera <span class="command"><strong>grub2</strong></span>, men dessa är utanför omfånget för denna bilaga. </p>
+<p>Här är ett enkelt exempel på en <code class="filename">/etc/lilo.conf</code>: </p>
+<div class="informalexample"><pre class="screen">boot=/dev/<em class="replaceable"><code>sda6</code></em>
+root=/dev/<em class="replaceable"><code>sda6</code></em>
+install=menu
+delay=20
+lba32
+image=/vmlinuz
+initrd=/initrd.img
+label=Debian
+</pre></div>
+<p>
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4533"></a>D.3.7. Remote access: Installing SSH and setting up access</h3></div></div></div>
+<p>In case you can login to the system via console, you can skip this section. If the system should be accessible via the network later on, you need to install SSH and set up access. </p>
+<div class="informalexample"><pre class="screen">
+# apt install ssh
+</pre></div>
+<p> Root login with password is disabled by default, so setting up access can be done by setting a password and re-enable root login with password: </p>
+<div class="informalexample"><pre class="screen">
+# passwd
+# editor /etc/ssh/sshd_config
+</pre></div>
+<p> This is the option to be enabled: </p>
+<div class="informalexample"><pre class="screen">
+PermitRootLogin yes
+</pre></div>
+<p> Access can also be set up by adding an ssh key to the root account: </p>
+<div class="informalexample"><pre class="screen">
+# mkdir /root/.ssh
+# cat &lt;&lt; EOF &gt; /root/.ssh/authorized_keys
+ssh-rsa ....
+EOF
+</pre></div>
+<p> Lastly, access can be set up by adding a non-root user and setting a password: </p>
+<div class="informalexample"><pre class="screen"># adduser joe
+# passwd joe
+</pre></div>
+<p>
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4546"></a>D.3.8. Slutgiltiga justeringar</h3></div></div></div>
+<p>As mentioned earlier, the installed system will be very basic. If you would like to make the system a bit more mature, there is an easy method to install all packages with <span class="quote">”<span class="quote">standard</span>”</span> priority: </p>
+<div class="informalexample"><pre class="screen">
+# tasksel install standard
+</pre></div>
+<p> Of course, you can also just use <span class="command"><strong>apt</strong></span> to install packages individually. </p>
+<p>Efter installationen kommer det att finnas en hel del hämtade paket i <code class="filename">/var/cache/apt/archives/</code>. Du kan frigöra diskutrymme genom att köra: </p>
+<div class="informalexample"><pre class="screen"># apt clean
+</pre></div>
+<p>
+
+</p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm4341" class="footnote"><p><a href="#idm4341" class="para"><sup class="para">[25] </sup></a> Dessa inkluderar GNU-kärnverktyg och kommandon såsom <span class="command"><strong>sed</strong></span>, <span class="command"><strong>grep</strong></span>, <span class="command"><strong>tar</strong></span> och <span class="command"><strong>gzip</strong></span>. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apds02.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apd.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apds04.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">D.2. Nödvändig diskplats för funktioner </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> D.4. Installera Debian GNU/Linux över Parallel Line IP (PLIP)</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

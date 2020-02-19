@@ -1,0 +1,289 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική 64-bit PC</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Οδηγός Εγκατάστασης Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης">
+<link rel="prev" href="ch05.html" title="Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης">
+<link rel="next" href="ch05s02.html" title="5.2. Προσβασιμότητα">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική <span class="phrase">64-bit PC</span>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<th width="60%" align="center">Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm1036"></a>5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική <span class="phrase">64-bit PC</span>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </h2></div></div></div>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Προειδοποίηση]" src="images/warning.png"></td>
+<th align="left">Προειδοποίηση</th>
+</tr>
+<tr><td align="left" valign="top"><p>Αν έχετε οποιοδήποτε άλλα λειτουργικά συστήματα στο σύστημά σας που επιθυμείτε να διατηρήσετε (διαμόρφωση διπλής εκκίνησης), θα πρέπει να βεβαιωθείτε ότι έχουν τερματιστεί κανονικά <span class="emphasis"><em>πριν</em></span> την εκκίνηση του εγκαταστάτη. Η εγκατάσταση ενός λειτουργικού συστήματος ενώ κάποιο άλλο βρίσκεται σε κατάσταση "νάρκης" (hibernation) (είναι σε "αναστολή" (suspension) στον δίσκο) μπορεί να έχει σαν αποτέλεσμα την απώλεια ή άλλη ζημιά στην κατάσταση του συστήματος υπό αναστολή και οι οποίες θα μπορούσαν να προκαλέσουν προβλήματα κατά την επανεκκίνησή του. </p></td></tr>
+</table></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top"><p>Για πληροφορίες σχετικά με την εκκίνηση του γραφικού εγκαταστάτη δείτε το <a class="xref" href="ch05s01.html#graphical" title="5.1.8. The Graphical Installer">Τμήμα 5.1.8, «The Graphical Installer»</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-x86"></a>5.1.1. Εκκίνηση από USB stick μνήμης </h3></div></div></div>
+<p>If your computer will boot from USB, this will probably be the easiest route for installation. Assuming you have prepared everything from <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-x86" title="3.6.2. Επιλογή συσκευής εκκίνησης">Τμήμα 3.6.2, «Επιλογή συσκευής εκκίνησης»</a></span> and <a class="xref" href="ch04s03.html" title="4.3. Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης">Τμήμα 4.3, «Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης»</a>, just plug your USB stick into some free USB connector and reboot the computer. The system should boot up, and unless you have used the flexible way to build the stick and not enabled it, you should be presented with a graphical boot menu (on hardware that supports it). Here you can select various installer options, or just hit <span class="keycap"><strong>Enter</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1052"></a>5.1.2. Εκκίνηση από CD-ROM</h3></div></div></div>
+<p>Αν έχετε ένα τέτοιο σετ και αν το μηχάνημά σας υποστηρίζει απευθείας εκκίνηση από το CD τότε είστε εντάξει! Απλά <span class="phrase">ρυθμίστε το σύστημά σας για εκκίνηση από το CD όπως περιγράφεται στην ενότητα <a class="xref" href="ch03s06.html#boot-dev-select-x86" title="3.6.2. Επιλογή συσκευής εκκίνησης">Τμήμα 3.6.2, «Επιλογή συσκευής εκκίνησης»</a>,</span> βάλτε το CD σας στη συσκευή, επανεκκινήστε και προχωρήστε στο επόμενο κεφάλαιο. </p>
+<p>Σημειώστε ότι κάποιες συσκευές CD πιθανόν να απαιτούν συγκεκριμένους οδηγούς και έτσι να μην είναι προσβάσιμες στα πρώτα στάδια της εγκατάστασης. Αν συμβεί λοιπόν ο συνηθισμένος τρόπος εκκίνησης από το CD να μην δουλέψει για το σύστημά σας,ξαναεπισκεφθείτε το κεφάλαιο αυτό και διαβάστε για πιθανούς εναλλακτικούς πυρήνες και μεθόδους εγκατάστασης που ίσως δουλέψουν στην περίπτωσή σας. </p>
+<p>Even if you cannot boot from CD-ROM, you can probably install the Debian system components and any packages you want from CD-ROM. Simply boot using a different medium and when it's time to install the operating system, base system, and any additional packages, point the installation system at the CD-ROM drive. </p>
+<p>Αν έχετε προβλήματα κατά την εκκίνηση, δείτε το <a class="xref" href="ch05s04.html" title="5.4. Ανίχνευση λαθών της Διαδικασίας Εγκατάστασης">Τμήμα 5.4, «Ανίχνευση λαθών της Διαδικασίας Εγκατάστασης »</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-win32"></a>5.1.3. Εκκίνηση από Windowse</h3></div></div></div>
+<p>Για να ξεκινήσετε τον εγκαταστάτη από τα Windows, μπορείτε είτε να </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>αποκτήστε ένα μέσο εγκατάστασης, ένα CD-ROM/DVD-ROM<span class="phrase"> ή ένα κλειδί μνήμης USB </span> όπως περιγράφεται στο <a class="xref" href="ch04s01.html" title="4.1. Επίσημα Σετ CD/DVD-ROM του Debian GNU/Linux">Τμήμα 4.1, «Επίσημα Σετ CD/DVD-ROM του Debian GNU/Linux»</a><span class="phrase"> αντίστοιχα <a class="xref" href="ch04s03.html" title="4.3. Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης">Τμήμα 4.3, «Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης»</a></span> ή </p></li>
+<li class="listitem"><p>κατεβάσετε ένα ξεχωριστό εκτελέσιμο αρχείο για Windows, το οποίο είναι διαθέσιμο ως <a class="ulink" href="http://http.us.debian.org/debian/tools/win32-loader/stable/win32-loader.exe" target="_top">tools/win32-loader/stable/win32-loader.exe</a> στους καθρέφτες του Debian. </p></li>
+</ul></div>
+<p>
+
+</p>
+<p>Αν χρησιμοποιείτε ένα CD ή DVD εγκατάστασης, θα πρέπει να ξεκινήσει αυτόματα ένα πρόγραμμα προ-εγκατάστασης καθώς εισάγετε τον δίσκο στο σύστημα. Σε περίπτωση που τα Windows δεν ξεκινούν αυτόματα τον δίσκο ή αν χρησιιμοποιείτε ένα κλειδί USB, μπορείτε να εκτελέσετε το πρόγραμμα με το χέρι, πηγαινοντας στη συσκευή και τρέχοντας την εντολή <span class="command"><strong>setup.exe</strong></span>. </p>
+<p>Μετά την εκκίνηση του προγράμματος, θα σας γίνουν μερικές προκαταρκτικές ερωτήσεις και το σύστημα θα προετοιμαστεί για επανεκκίνηση στον εγκαταστάτη του Debian GNU/Linux. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="install-from-dos"></a>5.1.4. Εκκίνηση από το DOS με loadlin</h3></div></div></div>
+<p>Εκκινήσετε στο DOS (όχι στα Windows). Για να το κάνετε αυτό, ξεκινήστε για παράδειγμα από έναν δίσκο ανάκτησης  ή διαγνωστικών. </p>
+<p>Αν έχετε πρόσβαση στο CD εγκατάστασης, αλλάξτε την τρέχουσα συσκευή στη συσκευή CD-ROM, πχ.  e.g. </p>
+<div class="informalexample"><pre class="screen">
+d:
+</pre></div>
+<p> διαφορετικά βεβαιωθείτε ότι έχετε προετοιμάσει ήδη τον σκληρό σας δίσκο με τον τρόπο που εξηγείται στην ενότητα  <a class="xref" href="ch04s04.html#files-loadlin" title="4.4.2. Εκκίνηση του εγκαταστάτη στον σκληρό δίσκο από DOS με χρήση του loadlin">Τμήμα 4.4.2, «Εκκίνηση του εγκαταστάτη στον σκληρό δίσκο από DOS με χρήση του <span class="command"><strong>loadlin</strong></span>»</a>, και αλλάξτε την τρέχουσα συσκευή σε αυτήν του δίσκου αν είναι απαραίτητο. </p>
+<p>Μεταβείτε στον υποκατάλογο του τύπου που επιλέξατε, πχ., </p>
+<div class="informalexample"><pre class="screen">
+cd \install.<code class="filename">amd</code>
+</pre></div>
+<p> Αν προτιμάτε να χρησιμοποιήσετε τον γραφικό εγκαταστάτη, πηγαίνετε στον υποκατάλογο <code class="filename">gtk</code>. </p>
+<div class="informalexample"><pre class="screen">
+cd gtk
+</pre></div>
+<p> Στη συνέχεια, εκτελέστε το <span class="command"><strong>install.bat</strong></span>. Ο πυρήνας θα φορτωθεί και θα ξεκινήσει το σύστημα εγκατάστασης. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-initrd"></a>5.1.5. Εκκίνηση  από το Linux χρησιμοποιώντας <span class="command"><strong>LILO</strong></span> ή <span class="command"><strong>GRUB</strong></span>
+</h3></div></div></div>
+<p>Για να ξεκινήσετε τον εγκαταστάτη από τον σκληρό δίσκο θα πρέπει πρώτα να κατεβάσετε και να τοποθετήσετε τα απαραίτητα αρχεία όπως περιγράφεται στην ενότητα <a class="xref" href="ch04s04.html" title="4.4. Προετοιμασία των αρχείων για Εκκίνηση από Σκληρό Δίσκο">Τμήμα 4.4, «Προετοιμασία των αρχείων για Εκκίνηση από Σκληρό Δίσκο»</a>. </p>
+<p>Αν σκοπεύετε να χρησιμοποιήσετε τον σκληρό δίσκο μόνο για την εκκίνηση και στη συνέχεια να κατεβάσετε ο,τιδήποτε άλλο από το δίκτυο, θα πρέπει να κατεβάσετε το αρχείο <code class="filename">netboot/debian-installer/amd64/initrd.gz</code>και τον αντίστοιχο πυρήνα <code class="filename">netboot/debian-installer/amd64/linux</code>. Αυτό θα σας επιτρέψει να επαναδιαμερίσετε τον δίσκο από τον οποίο θα εκκινήσετε τον εγκαταστάτη, αν και θα πρέπει να κάνετε κάτι τέτοιο με προσοχή. </p>
+<p>Εναλλακτικά, αν σκοπεύετε να διατηρήσετε αμετάβλητη μια υπάρχουσα κατάτμηση στον σκληρό δίσκο κατά τη διάρκεια της εγκατάστασης, μπορείτε να κατεβάσετε το αρχείο <code class="filename">hd-media/initrd.gz</code> και τον πυρήνα του, καθώς και να αντιγράψετε την εικόνα iso ενός CD (ή DVD) στον δίσκο (βεβαιωθείτε ότι το αρχείο έχει κατάληξη <code class="literal">.iso</code>). Ο εγκαταστάτης μπορεί τότε να εκκινηθεί από τον δίσκο και να κάνει την εγκατάσταση από την εικόνα του CD/DVD χωρίς την ανάγκη πρόσβασης στο δίκτυο. </p>
+<p>Για το  <span class="command"><strong>LILO</strong></span>, θα πρέπει να ρυθμίσετε δυο ουσιαστικά στοιχεία στο αρχείο <code class="filename">/etc/lilo.conf</code>: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p> να φορτώσει τον εγκαταστάτη <code class="filename">initrd.gz</code> κατά τη διάρκεια της εκκίνησης. </p></li>
+<li class="listitem"><p> να κάνετε τον πυρήνα <code class="filename">vmlinuz</code> να χρησιμοποιήσει έναν δίσκο RAM σαν το ριζικό τμήμα του δίσκου. </p></li>
+</ul></div>
+<p> Εδώ είναι ένα παράδειγμα αρχείου <code class="filename">/etc/lilo.conf</code>: </p>
+<p>
+
+</p>
+<div class="informalexample"><pre class="screen">image=/boot/newinstall/vmlinuz
+       label=newinstall
+       initrd=/boot/newinstall/initrd.gz 
+</pre></div>
+<p> Για περισσότερες λεπτομέρειες, αναφερθείτε στις σελίδες χρήσης των <span class="citerefentry"><span class="refentrytitle">initrd</span>(4)</span> και <span class="citerefentry"><span class="refentrytitle">lilo.conf</span>(5)</span>. Τρέξτε τώρα το <strong class="userinput"><code>lilo</code></strong> και επανεκκινήστε. </p>
+<p>Η διαδικασία για το <span class="command"><strong>GRUB1</strong></span> είναι παρόμοια. Εντοπίστε το αρχείο <code class="filename">menu.lst</code> στον κατάλογο <code class="filename">/boot/grub/</code> (μερικές φορές στον κατάλογο<code class="filename">/boot/boot/grub/</code>), και προσθέστε το παρακάτω για τον εγκαταστάτη, για παράδειγμα (υποθέτοντας ότι ο κατάλογος <code class="filename">/boot</code> βρίσκεται στην πρώτη κατάτμηση του πρώτου δίσκου του συστήματος): </p>
+<div class="informalexample"><pre class="screen">title  New Install
+root   (hd0,0)
+kernel /boot/newinstall/vmlinuz
+initrd /boot/newinstall/initrd.gz
+</pre></div>
+<p>
+
+</p>
+<p>Η διαδικασία για το <span class="command"><strong>GRUB2</strong></span> είναι αρκετά παρόμοια. Το αρχείο ονομάζεται  <code class="filename">grub.cfg</code> αντί για <code class="filename">menu.lst</code>. Μια σχετική γραμμή για τον εγκαταστάτη θα μπορούσε να είναι για παράδειγμα: </p>
+<div class="informalexample"><pre class="screen">menuentry 'New Install' {
+insmod part_msdos
+insmod ext2
+set root='(hd0,msdos1)'
+linux /boot/newinstall/vmlinuz
+initrd /boot/newinstall/initrd.gz
+}
+</pre></div>
+<p>
+
+</p>
+<p>Από το σημείο αυτό και μετά δεν πρέπει να υπάρχει διαφορά ανάμεσα του <span class="command"><strong>GRUB</strong></span> και του <span class="command"><strong>LILO</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-x86"></a>5.1.6. Εκκίνηση μέσω TFTP</h3></div></div></div>
+<p>H εκκίνηση από το δίκτυο προαπαιτεί ότι διαθέτετε μια δικτυακή σύνδεση και έναν δικτυακό TFTP server εκκίνησης (και πιθανόν επίσης έναν εξυπηρετητή DHCP, RARP, ή BOOTP για αυτόματη ρύθμιση του δικτύου). </p>
+<p>The server-side setup to support network booting is described in <a class="xref" href="ch04s05.html" title="4.5. Προετοιμασία Αρχείων για δικτυακή εκκίνηση με TFTP">Τμήμα 4.5, «Προετοιμασία Αρχείων για δικτυακή εκκίνηση με TFTP»</a>. </p>
+<p>Υπάρχουν διάφοροι τρόποι για να κάνετε μια εκκίνηση με TFTP στην αρχιτεκτονική i386. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1148"></a>5.1.6.1. Κάρτα δικτύου ή μητρική που υποστηρίζουν PXE</h4></div></div></div>
+<p>Πιθανόν η κάρτα δικτύου σας (Network Interface Card) ή η μητρική σας να παρέχουν τη λειτουργία εκκίνησης με PXE. Αυτή είναι μια νέα υλοποίηση από την <span class="trademark">Intel</span>™ της εκκίνησης με TFTP. Αν αυτό συμβαίνει, πιθανόν να μπορείτε να ρυθμίσετε το BIOS του συστήματος σας ώστε να εκκινεί από το δίκτυο. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1152"></a>5.1.6.2. Κάρτα δικτύου (NIC) με δικτυακή bootROM </h4></div></div></div>
+<p>Υπάρχει περίπτωση η κάρτα δικτύου σας να παρέχει πιθανόν τη δυνατότητα εκκίνησης με TFTP. </p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1155"></a>5.1.6.3. Etherboot </h4></div></div></div>
+<p>Tο <a class="ulink" href="http://www.etherboot.org" target="_top">etherboot project</a> διαθέτει δισκέττες εκκίνησης και ίσως ακόμα bootroms που να πραγματοποιούν μια εκκίνηση με TFTPboot. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-screen"></a>5.1.7. Η οθόνη εκκίνησης</h3></div></div></div>
+<p>When the installer boots, you should be presented with a friendly graphical screen showing the Debian logo and a menu: </p>
+<div class="informalexample"><pre class="screen">Debian GNU/Linux installer boot menu
+
+Graphical install
+Install
+Advanced options             &gt;
+Help
+Install with speech synthesis
+</pre></div>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top"><p>This graphical screen will look very slightly different depending on how your computer has booted (BIOS or UEFI), but the same options will be shown. </p></td></tr>
+</table></div>
+<p>Depending on the installation method you are using, the <span class="quote">«<span class="quote">Graphical install</span>»</span> option may not be available. Bi-arch images additionally have a 64 bit variant for each install option, right below it, thus almost doubling the number of options. </p>
+<p>For a normal installation, select either the <span class="quote">«<span class="quote">Graphical install</span>»</span> or the <span class="quote">«<span class="quote">Install</span>»</span> entry — using either the arrow keys on your keyboard or by typing the first (highlighted) letter — and press <span class="keycap"><strong>Enter</strong></span> to boot the installer. The <span class="quote">«<span class="quote">Graphical install</span>»</span> entry is already selected by default. </p>
+<p>Η επιλογή <span class="quote">«<span class="quote">Προχωρημένες επιλογές</span>»</span> παρέχει πρόσβαση σε ένα δεύτερο μενού επιτρέπει την εκκίνηση του εγκαταστάτη σε κατάσταση "ειδικού", σε κατάσταση "διάσωσης" και σε αυτοματοποιημένες εγκαταστάσεις. </p>
+<p>If you wish or need to add any boot parameters for either the installer or the kernel, press <span class="keycap"><strong>Tab</strong></span> (BIOS boot), or <span class="keycap"><strong>e</strong></span> then <span class="keycap"><strong>down arrow</strong></span> three times then <span class="keycap"><strong>end</strong></span> (UEFI boot). This will bring the boot command for the selected menu entry and allow you to edit it to suit your needs. Note that the keyboard layout at this point is still QWERTY. The help screens (see below) list some common possible options. Press <span class="keycap"><strong>Enter</strong></span> (BIOS boot) or <span class="keycap"><strong>F10</strong></span> (UEFI boot) to boot the installer with your options; pressing <span class="keycap"><strong>Esc</strong></span> will return you to the boot menu and undo any changes you made. </p>
+<p>Το να επιλέξετε <span class="quote">«<span class="quote">Βοήθεια</span>»</span> από το μενού θα έχει σαν αποτέλεσμα την εμφάνιση της πρώτης οθόνης βοήθειας που σας δίνει μια εποπτεία όλων των διαθέσιμων οθονών βοήθειας. Για να επιστρέψετε στο μενού εκκίνησης μετά την εμφάνιση της οθόνης βοήθειας, τυπώστε «μενού» στο προτρεπτικό εκκίνησης και πατήστε <span class="keycap"><strong>Enter</strong></span>. Όλες οι οθόνες βοήθειας έχουν ένα προτρεπτικό εκκίνησης στο οποίο μπορείτε να πληκτρολογήσετε την εντολή εκκίνησης: </p>
+<div class="informalexample"><pre class="screen">
+Press F1 for the help index, or ENTER to boot:
+</pre></div>
+<p> Σε αυτό το προτρεπτικό βοήθειας μπορείτε απλά να πατήσετε το <span class="keycap"><strong>Enter</strong></span> για να ξεκινήσετε τον εγκαταστάτη με τις προκαθορισμένες επιλογές ή να εισάγετε μια συγκεκριμένη εντολή εκκίνησης και, προαιρετικά, παραμέτρους εκκίνησης. Ένας αριθμός τέτοιων παραμέτρων που μπορεί να σας είναι χρήσιμες μπορούν να βρεθούν στις διάφορες οθόνες βοήθειας. Αν όντως προσθέσετε οποιεσδήποτε παραμέτρους στην γραμμή εντολών εκκίνησης, βεβαιωθείτε ότι πληκτρολογείτε πρώτα τη μέθοδο εκκίνησης (η προεπιλεγμένη είναι <strong class="userinput"><code>install</code></strong>) και ένα κενό διάστημα πριν από την πρώτη παράμετρο (πχ. <strong class="userinput"><code>install fb=false</code></strong>). </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top"><p>Στο σημείο αυτό υποτίθεται ότι το πληκτρολόγιο έχει την προκαθορισμένη διάταξη Αμερικανικών Αγγλικών. Αυτό σημαινει ότι αν το πληκτρολόγιό σας έχει μια διαφορετική (συγκεκριμένη για την γλώσσα σας) διάταξη, οι χαρακτήρες που θα εμφανίζονται στην οθόνη σας πιθανόν να διαφέρουν από αυτό που θα περιμένατε καθώς πληκτρολογείτε κάποιες παραμέτρους. Η Wikipedia έχει ένα σχήμα της διάταξης US του πληκτρολογίου στον σύνδεσμο  <a class="ulink" href="https://en.wikipedia.org/wiki/Keyboard_layout#United_States" target="_top">schema of the US keyboard layout</a> που μπορεί να χρησιμεύσει σαν αναφορά για την εύρεση των σωστών χαρακτήρων που πρέπει να χρησιμοποιηθούν. </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Αν χρησιμοποιείτε ένα σύστημα του οποίου τι BIOS έχει ρυθμιστεί ώστε να χρησιμοποιεί μια σειριακή κονσόλα, πιθανά να μην μπορείτε να δείτε την αρχική γραφική οθόνη κατά την εκκίνηση του εγκαταστάτη. Πιθανόν να μην δείτε ούτε το μενού εκκίνησης. Το ίδιο μπορεί να συμβεί αν κάνετε την εγκατάσταση του συστήματος μέσω κάποιας συσκευής απομακρυσμένης διαχείρισης που παρέχει μόνο ένα κειμενικό interface στην κονσόλα VGA. Παραδείγματα τέτοιων συσκευών περιλαμβάνουν την κονσόλα κειμένου του <span class="quote">«<span class="quote">integrated Lights Out</span>»</span> (iLO) της Compaq και το <span class="quote">«<span class="quote">Integrated Remote Assistant</span>»</span> (IRA) της HP. </p>
+<p>Για να παρακάμψετε την οθόνη εκκίνησης του γραφικού περιβάλλοντος μπορείτε είτε να πατήσετε το <span class="keycap"><strong>Esc</strong></span> ώστε να πάρετε ένα προτρεπτικό εκκίνησης κειμένου ή (επίσης χωρίς να φαίνεται στην οθόνη) να πατήσετε το <span class="quote">«<span class="quote">H</span>»</span> και στη συνέχεια το <span class="keycap"><strong>Enter</strong></span> για να επιλέξετε την <span class="quote">«<span class="quote">Help</span>»</span> όπως περιγράφηκε προηγουμένως. Μετά από αυτό ό,τι πληκτρολογείτε θα εμφανίζεται στο προτρεπτικό. Για να αποτρέψετε την χρήση του framebuffer από τον εγκαταστάτη για το υπόλοιπο της εγκατάστασης, θα πρέπει επίσης να προσθέσετε την παράμετρο <strong class="userinput"><code>vga=normal fb=false</code></strong> στο προτρεπτικό εκκίνησης, όπως περιγράφεται στο κείμενο βοήθειας. </p>
+</td></tr>
+</table></div>
+<p>
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.8. The Graphical Installer</h3></div></div></div>
+<p>The graphical version of the installer is only available for a limited number of architectures, including <span class="phrase">64-bit PC</span>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   . The functionality of the graphical installer is essentially the same as that of the text-based installer as it basically uses the same programs, but with a different frontend. </p>
+<p>Although the functionality is identical, the graphical installer still has a few significant advantages. The main advantage is that it supports more languages, namely those that use a character set that cannot be displayed with the text-based <span class="quote">«<span class="quote">newt</span>»</span> frontend. It also has a few usability advantages such as the option to use a mouse, and in some cases several questions can be displayed on a single screen. </p>
+<p>The graphical installer is available with all CD images and with the hd-media installation method. To boot the graphical installer simply select the relevant option from the boot menu. Expert and rescue mode for the graphical installer can be selected from the <span class="quote">«<span class="quote">Advanced options</span>»</span> menu. The previously used boot methods <strong class="userinput"><code>installgui</code></strong>, <strong class="userinput"><code>expertgui</code></strong> and <strong class="userinput"><code>rescuegui</code></strong> can still be used from the boot prompt which is shown after selecting the <span class="quote">«<span class="quote">Help</span>»</span> option in the boot menu. </p>
+<p>There is also a graphical installer image that can be netbooted. And there is a special <span class="quote">«<span class="quote">mini</span>»</span> ISO image<a href="#ftn.gtk-miniiso-x86" class="footnote" name="gtk-miniiso-x86"><sup class="footnote">[5]</sup></a>, which is mainly useful for testing. </p>
+<p>Just as with the text-based installer it is possible to add boot parameters when starting the graphical installer. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>The graphical installer requires significantly more memory to run than the text-based installer: 800MB. If insufficient memory is available, it will automatically fall back to the text-based <span class="quote">«<span class="quote">newt</span>»</span> frontend. </p>
+<p>If the amount of memory in your system is below 550MB, the graphical installer may fail to boot at all while booting the text-based installer would still work. Using the text-based installer is recommended for systems with little available memory. </p>
+</td></tr>
+</table></div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.gtk-miniiso-x86" class="footnote"><p><a href="#gtk-miniiso-x86" class="para"><sup class="para">[5] </sup></a> The mini ISO image can be downloaded from a Debian mirror as described in <a class="xref" href="ch04s02.html" title="4.2. Λήψη Αρχείων από τους Κατοπτριστές αρχείων του Debian">Τμήμα 4.2, «Λήψη Αρχείων από τους Κατοπτριστές αρχείων του Debian»</a>. Look for <code class="filename">netboot/gtk/mini.iso</code>. </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Πάνω"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Αρχή"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Προσβασιμότητα</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

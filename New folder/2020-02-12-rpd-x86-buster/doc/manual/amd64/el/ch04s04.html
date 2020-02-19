@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.4. Προετοιμασία των αρχείων για Εκκίνηση από Σκληρό Δίσκο</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Οδηγός Εγκατάστασης Debian GNU/Linux">
+<link rel="up" href="ch04.html" title="Κεφάλαιο 4. Αποκτώντας τα Μέσα Εγκατάστασης του Συστήματος">
+<link rel="prev" href="ch04s03.html" title="4.3. Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης">
+<link rel="next" href="ch04s05.html" title="4.5. Προετοιμασία Αρχείων για δικτυακή εκκίνηση με TFTP">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.4. Προετοιμασία των αρχείων για Εκκίνηση από Σκληρό Δίσκο</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s03.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<th width="60%" align="center">Κεφάλαιο 4. Αποκτώντας τα Μέσα Εγκατάστασης του Συστήματος</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s05.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-drive-files"></a>4.4. Προετοιμασία των αρχείων για Εκκίνηση από Σκληρό Δίσκο</h2></div></div></div>
+<p>O εγκαταστάτης μπορεί να ξεκινήσει χρησιμοποιώντας αρχεία εκκίνησης τοποθετημένα σε ένα υπάρχον τμήμα του σκληρού δίσκου και που ενεργοποιούνται είτε μέσα από ένα άλλο λειτουργικό σύστημα είτε καλώντας έναν  φορτωτή εκκίνησης (boot loader) κατευθείαν από το BIOS. </p>
+<p>Μια πλήρης,<span class="quote">«<span class="quote">καθαρά δικτυακή</span>»</span> εγκατάσταση μπορεί να γίνει χρησιμοποιώντας αυτή την τεχνική. Κάτι που παρακάμπτει όλες τις δυσκολίες των αφαιρέσιμων μέσων, όπως την εύρεση και εγγραφή εικόνων CD ή το παίδεμα με πολυάριθμες και αναξιόπιστες δισκέττες. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="files-lilo"></a>4.4.1. Εκκίνηση του εγκαταστάτη στον σκληρό δίσκο από Linux με χρήση του <span class="command"><strong>LILO</strong></span> ή του <span class="command"><strong>GRUB</strong></span>
+</h3></div></div></div>
+<p>Η ενότητα αυτή εξηγεί πώς να προσθέσετε ή ακόμα και να αντικαταστήσετε την υπάρχουσα εγκατάστασή σας του Linux χρησιμοποιώντας είτε το <span class="command"><strong>LILO</strong></span> ή το <span class="command"><strong>GRUB</strong></span>. </p>
+<p>Στη διάρκεια της εκκίνησης, και οι δύο φορτωτές εκκίνησης υποστηρίζουν το φόρτωμα στην μνήμη όχι μόνο του πυρήνα αλλά και ενός ειδώλου δίσκου (disk image). Αυτός ο δίσκος RAM μπορεί να χρησιμοποιηθεί σαν ριζικό σύστημα αρχείων από τον πυρήνα. </p>
+<p>Αντιγράψτε τα ακόλουθα αρχεία από την αρχειοθήκη του Debian σε μια βολική τοποθεσία στον σκληρό σας δίσκο (σημειώστε ότι το  LILO δεν μπορεί να εκκινήσει από ένα σύστημα αρχείων  NTFS),  για παράδειγμα στον κατάλογο <code class="filename">/boot/newinstall/</code>. </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p><code class="filename">vmlinuz</code> (αρχείο πυρήνα) </p></li>
+<li class="listitem"><p><code class="filename">initrd.gz</code> (είδωλο δίσκου μνήμης) </p></li>
+</ul></div>
+<p>
+
+</p>
+<p>Τέλος, για να ρυθμίσετε τον φορτωτή εκκίνησης προχωρήστε στην ενότητα <a class="xref" href="ch05s01.html#boot-initrd" title="5.1.5. Εκκίνηση από το Linux χρησιμοποιώντας LILO ή GRUB">Τμήμα 5.1.5, «Εκκίνηση  από το Linux χρησιμοποιώντας <span class="command"><strong>LILO</strong></span> ή <span class="command"><strong>GRUB</strong></span>»</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="files-loadlin"></a>4.4.2. Εκκίνηση του εγκαταστάτη στον σκληρό δίσκο από DOS με χρήση του <span class="command"><strong>loadlin</strong></span>
+</h3></div></div></div>
+<p>Η ενότητα αυτή εξηγεί πώς να προετοιμάσετε τον σκηρό σας δίσκο για να εκκινήσετε τον εγκαταστάτη από περιβάλλον DOS χρησιμοποιώντας το <span class="command"><strong>loadlin</strong></span>. </p>
+<p>Αντιγράψτε τους ακόλοθους καταλόγους από την εικόνα ενός CD της διανομής  Debian CD στομ <code class="filename">c:\</code>. </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p><code class="filename">/install.<code class="filename">amd</code></code> (εκτελέσιμο αρχείο του πυρήνα και εικόνα δίσκου μνήμης, ramdisk) </p></li>
+<li class="listitem"><p><code class="filename">/tools</code> (εργαλείο loadlin) </p></li>
+</ul></div>
+<p>
+
+</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s03.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Πάνω"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s05.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.3. Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Αρχή"></a></td>
+<td width="40%" align="right" valign="top"> 4.5. Προετοιμασία Αρχείων για δικτυακή εκκίνηση με TFTP</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.2. Загрузка программы установки</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Руководство по установке Debian GNU/Linux">
+<link rel="up" href="apa.html" title="Приложение A. Краткая инструкция по установке">
+<link rel="prev" href="apas01.html" title="A.1. Предварительные сведения">
+<link rel="next" href="apas03.html" title="A.3. Установка">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.2. Загрузка программы установки</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apas01.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<th width="60%" align="center">Приложение A. Краткая инструкция по установке</th>
+<td width="20%" align="right"> <a accesskey="n" href="apas03.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="howto-getting-images"></a>A.2. Загрузка программы установки</h2></div></div></div>
+<p> CD-образы с <code class="classname">debian-installer</code>, подготовленные командой debian-cd можно найти на <a class="ulink" href="https://www.debian.org/CD/" target="_top">странице Debian CD</a>. Более подробно об этом написано в <a class="xref" href="ch04s01.html" title="4.1. Официальный набор CD/DVD-ROM Debian GNU/Linux">Раздел 4.1, «Официальный набор CD/DVD-ROM Debian GNU/Linux»</a>. </p>
+<p>Для некоторых методов установки требуются дополнительные образы помимо CD-образа.  В <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Где искать установочные образы">Раздел 4.2.1, «Где искать установочные образы»</a> описано, как их найти на серверах-зеркалах Debian. </p>
+<p>В следующих подразделах указано, какие образы требуются для каждого конкретного вида установки. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-cdrom"></a>A.2.1. Загрузка с CDROM</h3></div></div></div>
+<p>Образ CD netinst очень популярен для установки buster с помощью <code class="classname">debian-installer</code>. Он предназначены для загрузки с CD и установки дополнительных пакетов по сети, отсюда и название «netinst». В нём содержатся компоненты, необходимые для запуска программы установки и базовые пакеты,предоставляющие минимальную систему buster. При желании можно воспользоваться полным CD-образом, который не требует наличия сети для установки. Для этого достаточно первого диска из набора. </p>
+<p>Загрузите любой понравившийся вам тип образа и запишите его на CD. <span class="phrase"> Чтобы загрузиться с CD, вам может понадобиться изменить конфигурацию BIOS. <a class="xref" href="ch03s06.html#bios-setup" title="3.6.1. Вызов меню настройки BIOS">Раздел 3.6.1, «Вызов меню настройки BIOS»</a> описывает, как это сделать.</span> </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-usb"></a>A.2.2. Загрузка с карты памяти USB</h3></div></div></div>
+<p>Также возможна установка со съёмных USB устройств хранения. Например, из USB-брелка можно сделать удобный носитель установки Debian, который можно взять с собой куда угодно. </p>
+<p>Самый лёгкий путь подготовки карты памяти USB — это скачать любой образ CD или DVD, и записать его прямо на карту. Естественно, эта операция уничтожит все имеющиеся на ней данные. Данное действие работает из-за того, что образы Debian CD созданы в формате «isohybrid», который позволяет загружаться как с CD так и USB устройств. </p>
+<p>Существуют другие, более гибкие пути подготовки карт памяти для использования с debian-installer, также возможно использовать карту памяти меньшего объёма. Подробней смотрите <a class="xref" href="ch04s03.html" title="4.3. Подготовка файлов для загрузки с карты памяти USB">Раздел 4.3, «Подготовка файлов для загрузки с карты памяти USB»</a>. </p>
+<p>Некоторые BIOS поддерживают загрузку непосредственно с USB, а некоторые нет. Вам может потребоваться включить в BIOS параметр <span class="quote">«<span class="quote">USB legacy support</span>»</span>. В меню выбора загрузочного устройства должно появиться <span class="quote">«<span class="quote">removable drive</span>»</span> или <span class="quote">«<span class="quote">USB-HDD</span>»</span>, чтобы машина загрузилась с устройства USB. Полезные подсказки и подробное описание смотрите в <a class="xref" href="ch05s01.html#usb-boot-x86" title="5.1.1. Загрузка с карты памяти USB">Раздел 5.1.1, «Загрузка с карты памяти USB»</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-netboot"></a>A.2.3. Загрузка по сети</h3></div></div></div>
+<p><code class="classname">debian-installer</code> можно загрузить полностью из сети. Методы загрузки по сети (netboot) зависят от архитектуры и настройки сетевой загрузки. Файлы для загрузки <code class="classname">debian-installer</code> по сети лежат в каталоге <code class="filename">netboot/</code>. </p>
+<p>Вероятно, проще всего будет настроить сетевую загрузку с помощью PXE. Распакуйте файл <code class="filename">netboot/pxeboot.tar.gz</code> в <code class="filename">/srv/tftp</code> или в соответствующий каталог вашего сервера tftp. Настройте сервер DHCP для передачи имени файла <code class="filename">pxelinux.0</code> клиентам и всё должно заработать. Подробную инструкцию смотрите в <a class="xref" href="ch04s05.html" title="4.5. Подготовка файлов для загрузки по TFTP">Раздел 4.5, «Подготовка файлов для загрузки по TFTP»</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-hard-disk"></a>A.2.4. Загрузка с жёсткого диска</h3></div></div></div>
+<p>Возможна загрузка программы установки не со сменного носителя, а просто с имеющегося жёсткого диска, который может содержать различные операционные системы. Скачайте файлы <code class="filename">hd-media/initrd.gz</code>, <code class="filename">hd-media/vmlinuz</code> и образ Debian CD в корневой каталог жёсткого диска. Проверьте, что образ CD имеет имя файла, оканчивающееся на <code class="literal">.iso</code>. Теперь просто выполняется загрузка linux с initrd. <span class="phrase"> <a class="xref" href="ch05s01.html#boot-initrd" title="5.1.5. Загрузка из Linux с помощью LILO или GRUB">Раздел 5.1.5, «Загрузка из Linux с помощью <span class="command"><strong>LILO</strong></span> или <span class="command"><strong>GRUB</strong></span>»</a> показывает один вариант, как это сделать. </span> </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apas01.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apa.html"><img src="images/up.png" alt="Наверх"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apas03.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.1. Предварительные сведения </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Начало"></a></td>
+<td width="40%" align="right" valign="top"> A.3. Установка</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

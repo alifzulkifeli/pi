@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>8.6. Recuperar un sistema roto</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Guía de instalación de Debian GNU/Linux">
+<link rel="up" href="ch08.html" title="Capítulo 8. Los pasos siguientes y dónde continuar a partir de aquí">
+<link rel="prev" href="ch08s05.html" title="8.5. Compilar un nuevo núcleo">
+<link rel="next" href="apa.html" title="Apéndice A. CÓMO de instalación">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">8.6. Recuperar un sistema roto</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch08s05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 8. Los pasos siguientes y dónde continuar a partir de aquí</th>
+<td width="20%" align="right"> <a accesskey="n" href="apa.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="rescue"></a>8.6. Recuperar un sistema roto</h2></div></div></div>
+<p>Algunas veces las cosas salen mal y el sistema que ha instalado con mucho cuidado no puede arrancar. Quizás se rompió la configuración del cargador de arranque mientras estaba probando un cambio o quizás el nuevo núcleo que instaló ya no puede arrancar o quizás unos rayos cósmicos golpearon su disco duro y cambiaron un bit de <code class="filename">/sbin/init</code>. Independientemente de la razón del fallo necesitará un sistema desde el cual poder trabajar para arreglarlo y el modo de rescate puede ser útil para esto. </p>
+<p>To access rescue mode, select <strong class="userinput"><code>rescue</code></strong> from the boot menu, type <strong class="userinput"><code>rescue</code></strong> at the <code class="prompt">boot:</code> prompt, or boot with the <strong class="userinput"><code>rescue/enable=true</code></strong> boot parameter. You'll be shown the first few screens of the installer, with a note in the corner of the display to indicate that this is rescue mode, not a full installation. Don't worry, your system is not about to be overwritten! Rescue mode simply takes advantage of the hardware detection facilities available in the installer to ensure that your disks, network devices, and so on are available to you while repairing your system. </p>
+<p>Se le mostrará la lista de particiones de su sistema en lugar de la herramienta de particionado y se le pedirá que seleccione una de éstas. Por regla general seleccionará la partición que contiene la raíz del sistema de ficheros que necesita reparar. Puede seleccionar también particiones en dispositivos RAID o LVM así como las creadas directamente en los discos. </p>
+<p>El instalador le presentará, si puede, un intérprete de línea de órdenes en el sistema de ficheros que ha seleccionado para que lleve a cabo las reparaciones que necesite. <span class="phrase"> Por ejemplo, si necesita reinstalar el cargador de arranque GRUB en el sector de arranque del primer disco duro, puede ejecutar la orden <strong class="userinput"><code>grub-install '(hd0)'</code></strong> para hacerlo. </span> </p>
+<p>Si el instalador no puede ejecutar un intérprete de órdenes usable en el sistema de ficheros raíz que ha seleccionado quizás se deba a que el sistema de ficheros se ha corrompido. En este caso se le mostrará un aviso y se ofrecerá a darle un intérprete de órdenes en el entorno de instalación en lugar de en la raíz. Puede que no tenga tantas herramientas a su alcance en este entorno, pero deberían ser suficientes para reparar su sistema. El sistema de ficheros raíz que haya seleccionado estará montado en el directorio <code class="filename">/target</code>. </p>
+<p>En cualquier caso, el sistema se reiniciará automáticamente cuando salga del intérprete de órdenes. </p>
+<p>Una última nota: reparar un sistema roto puede ser difícil y este manual no intentará detallar todas las cosas que pueden ir mal y cómo arreglarlas. Si tiene algún problema, consulte con un experto. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch08s05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch08.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apa.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">8.5. Compilar un nuevo núcleo </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> Apéndice A. CÓMO de instalación</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

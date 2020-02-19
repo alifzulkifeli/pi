@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Preinstalación de hardware y configuración del sistema operativo</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Guía de instalación de Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Capítulo 3. Antes de instalar Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Preparticionado para sistemas multiarranque">
+<link rel="next" href="ch04.html" title="Capítulo 4. Obtener el medio de instalación del sistema">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Preinstalación de hardware y configuración del sistema operativo</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 3. Antes de instalar Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Preinstalación de hardware y configuración del sistema operativo</h2></div></div></div>
+<p>Esta sección le guiará a través de la preinstalación y configuración de hardware, en caso de ser necesaria, previa a la instalación de Debian. Generalmente, involucra comprobar y posiblemente cambiar la configuración de la BIOS/firmware del sistema para su sistema. La <span class="quote">“<span class="quote">BIOS</span>”</span> o el <span class="quote">“<span class="quote">firmware del sistema</span>”</span> es el software base usado por el hardware, y es fundamental durante el proceso de arranque (después del encendido). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="bios-setup"></a>3.6.1. Utilización del menú de configuración de la BIOS</h3></div></div></div>
+<p>La BIOS provee las funcionalidades básicas necesarias para arrancar su máquina y permitir al sistema operativo acceder a su hardware. Su sistema ofrece un menú de configuración de la BIOS, usado para configurarla. Para acceder al menú de configuración de la BIOS, debe pulsar un tecla o combinación de teclas después de arrancar el sistema. Habitualmente, es la tecla <span class="keycap"><strong>Supr</strong></span> o la tecla <span class="keycap"><strong>F2</strong></span>, pero algunos fabricantes utilizan otras. Generalmente, al arrancar el sistema se muestra un mensaje que indica la tecla que pulsar para acceder a la pantalla de configuración. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-x86"></a>3.6.2. Selección de dispositivo de arranque</h3></div></div></div>
+<p>En el menú de configuración de la BIOS, puede seleccionar los dispositivos que comprobar, así como su orden, en busca de un sistema operativo arrancable. Las selecciones posibles incluyen los discos duros, internos, la unidad de CD/DVD-ROM, y dispositivos de almacenamiento USB como dispositivos USB o discos duros externos USB. Los sistemas modernos también existe la posibilidad de activar el arranque por red mediante PXE. </p>
+<p>Según el medio de instalación (CD/DVD ROM, dispositivo USB, arranque por red) que ha seleccionado, debe activar los dispositivos de arranque pertinentes si aún no están activados. </p>
+<p>La mayoría de las variantes de BIOS permiten invocar un menú de arranque durante el arranque del sistema, que permite seleccionar el dispositivo desde el que debe arrancar el sistema para la sesión actual. Si esta opción está disponible, habitualmente la BIOS muestra un mensaje breve como <span class="quote">“<span class="quote">pulse <span class="keycap"><strong>F12</strong></span> para el menú de arranque</span>”</span> durante el arranque del sistema. La tecla que se utiliza para acceder a este menú varía según el sistema; teclas comúnmente utilizados son <span class="keycap"><strong>F12</strong></span>, <span class="keycap"><strong>F11</strong></span> and <span class="keycap"><strong>F8</strong></span>. Si se selecciona un dispositivo de este menú no se modifica el orden de arranque predeterminado de la BIOS; esto es, puede realizar el arranque una vez desde un dispositivo USB mientras que el disco duro interno está configurado como el dispositivo de arranque principal predeterminado. </p>
+<p>Si la BIOS no proporciona un menú de arranque para realizar selecciones específicas del dispositivo de arranque actual, debe modificar la configuración de la BIOS para que el dispositivo desde el que arranca <code class="classname">debian-installer</code> sea el dispositivo de arranque principal. </p>
+<p>Unfortunately some computers contain buggy BIOS versions. Booting <code class="classname">debian-installer</code> from a USB stick might not work even if there is an appropriate option in the BIOS setup menu and the stick is selected as the primary boot device. On some of these systems using a USB stick as boot medium is impossible; others can be tricked into booting from the stick by changing the device type in the BIOS setup from the default <span class="quote">“<span class="quote">USB harddisk</span>”</span> or <span class="quote">“<span class="quote">USB stick</span>”</span> to <span class="quote">“<span class="quote">USB ZIP</span>”</span> or <span class="quote">“<span class="quote">USB CDROM</span>”</span>. <span class="phrase"> In particular if you use an isohybrid CD/DVD image on a USB stick (see <a class="xref" href="ch04s03.html#usb-copy-isohybrid" title="4.3.1. Preparación de una memoria USB utilizando una imagen de CD o DVD híbrida">Sección 4.3.1, “Preparación de una memoria USB utilizando una imagen de CD o DVD híbrida”</a>), changing the device type to <span class="quote">“<span class="quote">USB CDROM</span>”</span> helps on some BIOSes which will not boot from a USB stick in USB harddisk mode.</span> You may need to configure your BIOS to enable <span class="quote">“<span class="quote">USB legacy support</span>”</span>. </p>
+<p>Si no puede modificar la BIOS para que arranque de forma directa desde un dispositivo USB, queda la opción de utilizar una ISO copiada al dispositivo. Arranque <code class="classname">debian-installer</code> mediante <a class="xref" href="ch04s04.html" title="4.4. Preparación de los ficheros para arranque desde el disco duro">Sección 4.4, “Preparación de los ficheros para arranque desde el disco duro”</a> y, después de analizar los discos duros para detectar una imagen ISO de instalador, seleccione el dispositivo USB y una imagen de instalación. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="UEFI"></a>3.6.3. Systems with UEFI firmware</h3></div></div></div>
+<p>UEFI (<span class="quote">“<span class="quote">Unified Extensible Firmware Interface</span>”</span>) is a new kind of system firmware that is used on many modern systems and is - among other uses - intended to replace the classic PC BIOS. </p>
+<p>Currently most PC systems that use UEFI also have a so-called <span class="quote">“<span class="quote">Compatibility Support Module</span>”</span> (CSM) in the firmware, which provides exactly the same interfaces to an operating system as a classic PC BIOS, so that software written for the classic PC BIOS can be used unchanged. Nonetheless UEFI is intended to one day completely replace the old PC BIOS without being fully backwards-compatible and there are already a lot of systems with UEFI but without CSM. </p>
+<p>On systems with UEFI there are a few things to take into consideration when installing an operating system. The way the firmware loads an operating system is fundamentally different between the classic BIOS (or UEFI in CSM mode) and native UEFI. One major difference is the way the harddisk partitions are recorded on the harddisk. While the classic BIOS and UEFI in CSM mode use a DOS partition table, native UEFI uses a different partitioning scheme called <span class="quote">“<span class="quote">GUID Partition Table</span>”</span> (GPT). On a single disk, for all practical purposes only one of the two can be used and in case of a multi-boot setup with different operating systems on one disk, all of them must therefore use the same type of partition table. Booting from a disk with GPT is only possible in native UEFI mode, but using GPT becomes more and more common as hard disk sizes grow, because the classic DOS partition table cannot address disks larger than about 2 Terabytes while GPT allows for far larger disks. The other major difference between BIOS (or UEFI in CSM mode) and native UEFI is the location where boot code is stored and in which format it has to be. This means that different bootloaders are needed for each system. </p>
+<p>The latter becomes important when booting <code class="classname">debian-installer</code> on a UEFI system with CSM because <code class="classname">debian-installer</code> checks whether it was started on a BIOS- or on a native UEFI system and installs the corresponding bootloader. Normally this simply works but there can be a problem in multi-boot environments. On some UEFI systems with CSM the default boot mode for removable devices can be different from what is actually used when booting from hard disk, so when booting the installer from a USB stick in a different mode from what is used when booting another already installed operating system from the hard disk, the wrong bootloader might be installed and the system might be unbootable after finishing the installation. When choosing the boot device from a firmware boot menu, some systems offer two seperate choices for each device, so that the user can select whether booting shall happen in CSM or in native UEFI mode. </p>
+<p>Another UEFI-related topic is the so-called <span class="quote">“<span class="quote">secure boot</span>”</span> mechanism. Secure boot means a function of UEFI implementations that allows the firmware to only load and execute code that is cryptographically signed with certain keys and thereby blocking any (potentially malicious) boot code that is unsigned or signed with unknown keys. In practice the only key accepted by default on most UEFI systems with secure boot is a key from Microsoft used for signing the Windows bootloader. As the boot code used by <code class="classname">debian-installer</code> is not signed by Microsoft, booting the installer requires prior deactivation of secure boot in case it is enabled. Secure boot is often enabled by default on systems that come preinstalled with a 64-bit version of Windows 8 and there is unfortunately no standard way to disable it in the UEFI setup. On some systems, the option to disable secure boot is only made visible when a BIOS password has been set by the user, so if you have a system with secure boot enabled, but cannot find an option to disable it, try setting a BIOS password, powercycle the machine and look again for an appropriate option. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="disable-fast-boot"></a>3.6.4. Disabling the Windows 8 <span class="quote">“<span class="quote">fast boot</span>”</span> feature</h3></div></div></div>
+<p>Windows 8 offers a feature called <span class="quote">“<span class="quote">fast boot</span>”</span> to cut down system startup time. Technically, when this feature is enabled, Windows 8 does not do a real shutdown and a real cold boot afterwards when ordered to shut down, but instead does something resembling a partial suspend to disk to reduce the <span class="quote">“<span class="quote">boot</span>”</span> time. As long as Windows 8 is the only operating system on the machine, this is unproblematic, but it can result in problems and data loss when you have a dual boot setup in which another operating system accesses the same filesystems as Windows 8 does. In that case the real state of the filesystem can be different from what Windows 8 believes it to be after the <span class="quote">“<span class="quote">boot</span>”</span> and this could cause filesystem corruption upon further write accesses to the filesystem. Therefore in a dual boot setup, to avoid filesystem corruption the <span class="quote">“<span class="quote">fast boot</span>”</span> feature has to be disabled within Windows. </p>
+<p>It may also be necessary to disable <span class="quote">“<span class="quote">fast boot</span>”</span> to even allow access to UEFI setup to choose to boot another operating system or <code class="classname">debian-installer</code>. On some UEFI systems, the firmware will reduce <span class="quote">“<span class="quote">boot</span>”</span> time by not initialising the keyboard controller or USB hardware; in these cases, it is necessary to boot into Windows and disable this feature to allow for a change of boot order. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="hardware-issues"></a>3.6.5. Problemas de hardware a tener en cuenta</h3></div></div></div>
+<p><b>Compatibilidad de USB en la BIOS y teclados USB. </b>Si no tiene teclados de estilo PS/2 sino solamente un modelo USB, puede que para sistemas muy antiguos necesite habilitar la emulación de compatibilidad de teclado para versiones antiguas en la configuración de la BIOS para poder utilizar el teclado en el menú del gestor de arranque, aunque esto no es un problema en sistemas modernos. Si su teclado no funciona en el menú del gestor de arranque, consulte el manual de su placa base y busque las opciones <span class="quote">“<span class="quote">Emulación de compatibilidad de teclado</span>”</span> o <span class="quote">“<span class="quote">Compatibilidad de teclado USB</span>”</span>. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Preparticionado para sistemas multiarranque </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> Capítulo 4. Obtener el medio de instalación del sistema</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

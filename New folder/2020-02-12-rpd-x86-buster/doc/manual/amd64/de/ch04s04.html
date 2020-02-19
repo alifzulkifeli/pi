@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.4. Dateien vorbereiten für das Booten von Festplatte</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Debian GNU/Linux – Installationsanleitung">
+<link rel="up" href="ch04.html" title="Kapitel 4. Systeminstallations-Medien beschaffen">
+<link rel="prev" href="ch04s03.html" title="4.3. Dateien vorbereiten für das Booten von einem USB-Memory-Stick">
+<link rel="next" href="ch04s05.html" title="4.5. Dateien vorbereiten für TFTP-Netzwerk-Boot">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.4. Dateien vorbereiten für das Booten von Festplatte</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s03.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<th width="60%" align="center">Kapitel 4. Systeminstallations-Medien beschaffen</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s05.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-drive-files"></a>4.4. Dateien vorbereiten für das Booten von Festplatte</h2></div></div></div>
+<p>Der Installer kann von Dateien auf einer bestehenden Festplattenpartition gebootet werden, entweder von einem anderen Betriebssystem aus oder direkt vom BIOS mittels eines Bootloaders. </p>
+<p>Man kann auf diese Weise eine <span class="quote">„<span class="quote">reine Netzwerk</span>“</span>-Installation durchführen. Dies vermeidet das ganze Theater mit den Wechselmedien, wie das Auffinden und Brennen von CD-Images oder den Kampf mit den vielen oder mit defekten Disketten. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="files-lilo"></a>4.4.1. Booten des Installers von Festplatte unter Linux mittels <span class="command"><strong>LILO</strong></span> oder <span class="command"><strong>GRUB</strong></span>
+</h3></div></div></div>
+<p>Dieser Abschnitt beschreibt, wie Sie Debian mit <span class="command"><strong>lilo</strong></span> oder <span class="command"><strong>grub</strong></span> dem System hinzufügen bzw. eine bestehende Linux-Installation komplett ersetzen. </p>
+<p>Beide Bootloader unterstützen es, zum Zeitpunkt des Bootens nicht nur den Kernel zu laden, sondern auch ein komplettes Disk-Image. Diese RAM-Disk kann vom Kernel als Root-Dateisystem genutzt werden. </p>
+<p>Kopieren Sie die folgenden Dateien von einem Debian-Archiv in ein passendes Verzeichnis auf Ihrer Festplatte, z.B. in <code class="filename">/boot/newinstall/</code> (beachten Sie, dass LILO nicht von Dateien auf einem NTFS-Dateisystem booten kann): </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p><code class="filename">vmlinuz</code> (Kernel-Binär-Datei) </p></li>
+<li class="listitem"><p><code class="filename">initrd.gz</code> (RAM-Disk-Image) </p></li>
+</ul></div>
+<p>
+
+</p>
+<p>Um jetzt abschließend den Bootloader zu konfigurieren, springen Sie zu <a class="xref" href="ch05s01.html#boot-initrd" title="5.1.5. Von Linux aus booten mittels LILO oder GRUB">Abschnitt 5.1.5, „Von Linux aus booten mittels <span class="command"><strong>LILO</strong></span> oder <span class="command"><strong>GRUB</strong></span>“</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="files-loadlin"></a>4.4.2. Booten des Installers von Festplatte unter DOS mittels <span class="command"><strong>loadlin</strong></span>
+</h3></div></div></div>
+<p>Dieser Abschnitt beschreibt, wie Sie Ihre Festplatte vorbereiten, um den Installer von DOS aus mittels <span class="command"><strong>loadlin</strong></span> zu starten. </p>
+<p>Kopieren Sie die folgenden Verzeichnisse von einem Debian-CD-Image nach <code class="filename">c:\</code>: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p><code class="filename">/install.<code class="filename">amd</code></code> (Kernel-Binärdatei und Ramdisk-Image) </p></li>
+<li class="listitem"><p><code class="filename">/tools</code> (Hilfsprogramm loadlin) </p></li>
+</ul></div>
+<p>
+
+</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s03.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Nach oben"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s05.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.3. Dateien vorbereiten für das Booten von einem USB-Memory-Stick </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Zum Anfang"></a></td>
+<td width="40%" align="right" valign="top"> 4.5. Dateien vorbereiten für TFTP-Netzwerk-Boot</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

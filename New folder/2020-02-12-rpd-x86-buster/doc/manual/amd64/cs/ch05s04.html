@@ -1,0 +1,522 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.4. Problémy s instalačním systémem</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Debian GNU/Linux — instalační příručka">
+<link rel="up" href="ch05.html" title="Kapitola 5. Zavedení instalačního systému">
+<link rel="prev" href="ch05s03.html" title="5.3. Zaváděcí parametry">
+<link rel="next" href="ch06.html" title="Kapitola 6. Používáme instalační program Debianu">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.4. Problémy s instalačním systémem</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05s03.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<th width="60%" align="center">Kapitola 5. Zavedení instalačního systému</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch06.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-troubleshooting"></a>5.4. Problémy s instalačním systémem</h2></div></div></div>
+<p>
+</p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="unreliable-cd"></a>5.4.1. Spolehlivost CD</h3></div></div></div>
+<p>
+
+Občas, obzvláště se staršími CD mechanikami, se nemusí podařit zavést
+instalační systém. Dokonce je možné, že se systém zavede, ale poté již
+CD mechaniku nenalezne, nebo během instalace bude čtení vracet chyby.
+
+</p>
+<p>
+
+Možných příčin je spousta a můžeme zde vypsat jen ty nejběžnější,
+resp. můžeme zmínit obecné postupy. Zbytek je na vás.
+
+</p>
+<p>
+
+Nejprve byste měli vyzkoušet dvě nejjednodušší věci.
+
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+
+Pokud z CD nejde zavést, zkontrolujte, že je disk vložen správně a že
+není špinavý.
+
+</p></li>
+<li class="listitem"><p>
+
+Pokud systém sice naběhne, ale rozpoznání CD selže, zkuste z menu
+opakovaně vybrat možnost <span class="guimenuitem">Rozpoznat a
+připojit CD-ROM</span>. Je známo, že se tím
+vyřeší některé problémy s DMA muzeálních CD mechanik.
+
+</p></li>
+</ul></div>
+<p>
+
+</p>
+<p>
+
+Jestliže to stále nepomohlo, zkuste některý z návrhů níže. Většina
+návrhů platí jak pro CD mechaniky, tak pro DVD, Blu-Ray a podobné
+mechaniky.
+
+</p>
+<p>
+
+Jako poslední záchrana zde stále existuje možnost zvolit instalaci
+z jiného média, např. ze sítě.
+
+</p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1635"></a>5.4.1.1. Běžné problémy</h4></div></div></div>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+
+Některé starší CD mechaniky nepodporují čtení disků vypálených
+na novějších vypalovačkách vyššími rychlostmi.
+
+  </p></li>
+<li class="listitem"><p>
+
+Některé hodně staré CD mechaniky nefungují správně při povoleném DMA
+<span class="quote">„<span class="quote">direct memory access</span>“</span>.
+
+  </p></li>
+</ul></div>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1643"></a>5.4.1.2. Jak zjistit o problému co nejvíce (a možná jej vyřešit)</h4></div></div></div>
+<p>
+
+Pokud se nedaří z CD zavést systém, zkuste následující.
+
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+
+Zkontrolujte, zda je v BIOSu povoleno zavádění z CD a že vaše CD
+mechanika podporuje média, která používáte.
+
+  </p></li>
+<li class="listitem">
+<p>
+
+Pokud jste si stáhli iso obraz, zkontrolujte, že souhlasí kontrolní
+součet s tím, který se nachází v souboru
+<code class="filename">MD5SUMS</code>. Soubor by měl ležet na stejném místě, ze
+kterého jste stáhli obraz.
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">$</code> <strong class="userinput"><code>md5sum <em class="replaceable"><code>debian-testing-i386-netinst.iso</code></em></code></strong>
+a20391b12f7ff22ef705cee4059c6b92  <em class="replaceable"><code>debian-testing-i386-netinst.iso</code></em>
+</pre></div>
+<p>
+
+Dále zkontrolujte, že kontrolní součet souhlasí i po vypálení obrazu.
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">$</code> <strong class="userinput"><code>dd if=/dev/cdrom | \</code></strong>
+<code class="prompt">&gt;</code> <strong class="userinput"><code>head -c `stat --format=%s <em class="replaceable"><code>debian-testing-i386-netinst.iso</code></em>` | \</code></strong>
+<code class="prompt">&gt;</code> <strong class="userinput"><code>md5sum</code></strong>
+a20391b12f7ff22ef705cee4059c6b92  -
+262668+0 records in
+262668+0 records out
+134486016 bytes (134 MB) copied, 97.474 seconds, 1.4 MB/s
+</pre></div>
+<p>
+
+  </p>
+</li>
+</ul></div>
+<p>
+
+</p>
+<p>
+
+Pokud se podařilo zavést instalační systém, ale ten už CD nerozpozná,
+postačí někdy z hlavního instalačního menu znovu spustit krok
+rozpoznání CD. Máte-li více mechanik, zkuste použít nějakou
+jinou. Jestliže to nepomáhá, nebo se při čtení objevují chyby, zkuste
+některou z rad níže. Pro následující kroky je třeba základní znalost
+jádra Linux. Pro spouštění různých příkazů byste se měli
+přepnout na druhou virtuální konzolu (VT2) a aktivovat tam spící
+shell.
+
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+
+Zkontrolujte podezřelé hlášky na čtvrté virtuální konzoli, nebo si
+editorem <span class="command"><strong>nano</strong></span> prohlédněte obsah souboru
+<code class="filename">/var/log/syslog</code>. Poté zkontrolujte výstup příkazu
+<span class="command"><strong>dmesg</strong></span>.
+
+  </p></li>
+<li class="listitem">
+<p>
+
+Ve výpisu příkazu <span class="command"><strong>dmesg</strong></span> se podívejte, zda byla vaše
+CD mechanika nalezena. Měli byste tam vidět něco podobného (ne nutně v
+tomto pořadí):
+
+</p>
+<div class="informalexample"><pre class="screen">
+ata1.00: ATAPI: MATSHITADVD-RAM UJ-822S, 1.61, max UDMA/33
+ata1.00: configured for UDMA/33
+scsi 0:0:0:0: CD-ROM            MATSHITA DVD-RAM UJ-822S  1.61 PQ: 0 ANSI: 5
+sr0: scsi3-mmc drive: 24x/24x writer dvd-ram cd/rw xa/form2 cdda tray
+cdrom: Uniform CD-ROM driver Revision: 3.20
+</pre></div>
+<p>
+
+Nevidíte-li nic podobného, je možné, že řadič, ke kterému je vaše CD
+mechanika připojena, nebyl rozpoznán, nebo není podporován. Jestliže
+víte, který ovladač je vyžadován pro váš řadič, můžete jej zkusit
+nahrát ručně příkazem <span class="command"><strong>modprobe</strong></span>.
+
+  </p>
+</li>
+<li class="listitem"><p>
+
+Zkontrolujte, zda se v adresáři <code class="filename">/dev/</code> vytvořil
+soubor zařízení odpovídající vaší CD mechanice. Podle výše uvedeného
+příkladu by to byl soubor <code class="filename">/dev/sr0</code>. Také by měl
+existovat symbolický odkaz <code class="filename">/dev/cdrom</code>.
+
+  </p></li>
+<li class="listitem">
+<p>
+
+Příkazem <span class="command"><strong>mount</strong></span> se přesvědčte, zda je CD připojeno.
+Pokud ne, zkuste je připojit ručně.
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">$</code> <strong class="userinput"><code>mount /dev/<em class="replaceable"><code>hdc</code></em> /cdrom</code></strong>
+</pre></div>
+<p>
+
+Podívejte se, zda tento příkaz nevyvolal nějaká chybová hlášení.
+
+  </p>
+</li>
+<li class="listitem">
+<p>
+
+Zkontrolujte, zda je DMA zapnuté:
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">$</code> <strong class="userinput"><code>cd /proc/<em class="replaceable"><code>ide</code></em>/<em class="replaceable"><code>hdc</code></em></code></strong>
+<code class="prompt">$</code> <strong class="userinput"><code>grep using_dma settings</code></strong>
+using_dma      1       0       1       rw
+</pre></div>
+<p>
+
+Číslo <span class="quote">„<span class="quote">1</span>“</span> v prvním sloupci za textem
+<code class="literal">using_dma</code> znamená, že je DMA povoleno. Pokud je,
+zkuste je vypnout:
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">$</code> <strong class="userinput"><code>echo -n "using_dma:0" &gt;settings</code></strong>
+</pre></div>
+<p>
+
+Před spuštěním příkazu se ujistěte, že jste v adresáři zařízení, které
+odpovídá vaší CD mechanice.
+
+  </p>
+</li>
+<li class="listitem"><p>
+
+Pokud se během instalace vyskytnou problémy, zkuste zkontrolovat
+integritu média pomocí volby v hlavním menu instalačního systému. Toto
+menu můžete použít jako rozumný test, zda je možné spolehlivě přečíst
+celé CD.
+
+  </p></li>
+</ul></div>
+<p>
+
+</p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1711"></a>5.4.2. Zaváděcí konfigurace</h3></div></div></div>
+<p>
+
+Pokud se jádro zasekne během zavádění, nerozezná připojená zařízení,
+nebo disky nejsou korektně rozpoznány, v prvé řadě zkontrolujte
+parametry jádra, kterými se zabývá <a class="xref" href="ch05s03.html" title="5.3. Zaváděcí parametry">5.3 – „Zaváděcí parametry“</a>.
+
+</p>
+<p>
+
+V některých případech může za nefunkčnost zařízení chybějící firmware,
+jak popisují části <a class="xref" href="ch02s02.html" title="2.2. Ovladače vyžadující firmware">2.2 – „Ovladače vyžadující firmware“</a> a <a class="xref" href="ch06s04.html" title="6.4. Nahrání chybějícího firmwaru">6.4 – „Nahrání chybějícího firmwaru“</a>.
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1718"></a>5.4.3. Softwarová syntéza hlasu</h3></div></div></div>
+<p>
+
+Pokud softwarová syntéza hlasu nefunguje, bývá to obvykle problém se
+zvukovou kartou. Buď není její ovladač součástí instalátoru, nebo její
+mixer používá atypické názvy kanálů, které jsou vevýchozím nastavení
+ztišené. Měli byste to nahlásit jako chybu a přiložit k ní výpisy
+násedujících příkazů spuštěných na daném počítači z jiného linuxového
+systému, na kterém zvuk funguje (například z Live CD).
+
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+  <strong class="userinput"><code>dmesg</code></strong>
+</p></li>
+<li class="listitem"><p>
+  <strong class="userinput"><code>lspci</code></strong>
+</p></li>
+<li class="listitem"><p>
+  <strong class="userinput"><code>lsmod</code></strong>
+</p></li>
+<li class="listitem"><p>
+  <strong class="userinput"><code>amixer</code></strong>
+</p></li>
+</ul></div>
+<p>
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="i386-boot-problems"></a>5.4.4. Běžné instalační problémy na <span class="phrase">64-bit PC</span>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </h3></div></div></div>
+<p>
+
+V praxi se můžete potkat s instalačními problémy, které lze vyřešit,
+nebo je aspoň obejít, zadáním určitých zaváděcích parametrů
+instalačnímu programu.
+
+</p>
+<p>
+
+Jestliže je obraz na obrazovce během zavádění jádra
+<span class="quote">„<span class="quote">divný</span>“</span>, jako třeba čistě bílý, naprosto černý, nebo se
+zobrazuje barevné <span class="quote">„<span class="quote">smetí</span>“</span>, máte problematickou grafickou
+kartu, která se neumí správně přepnout do grafického režimu. V takovém
+případě pomůže zaváděcí parametr
+<strong class="userinput"><code>fb=false</code></strong>, kterým vypnete
+grafický framebuffer. Během instalace však bude k dispozici pouze
+podmnožina dostupných jazyků, protože některé jazyky nejdou v čistě
+textovém režimu zobrazit. Zaváděcí parametry popisuje
+<a class="xref" href="ch05s03.html" title="5.3. Zaváděcí parametry">5.3 – „Zaváděcí parametry“</a>.
+
+</p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm1743"></a>5.4.4.1. Systém zamrzne během konfigurování PCMCIA</h4></div></div></div>
+<p>
+
+Některé staré modely notebooků firmy Dell jsou známé tím, že se zhroutí,
+když automatické rozpoznávání PCMCIA zařízení přistoupí na určité
+hardwarové adresy. Toto chování mohou vykazovat i některé notebooky
+jiných výrobců. Pokud se u vás tento problém projevuje a pro instalaci
+podporu PCMCIA nepotřebujete, můžete ji vypnout zaváděcím parametrem
+<strong class="userinput"><code>hw-detect/start_pcmcia=false</code></strong>. Služby PCMCIA
+můžete zprovoznit později po instalaci.
+
+</p>
+<p>
+
+Alternativně můžete instalační program zavést v expertním režimu. Pak
+budete mimo jiné dotázáni na rozsah zdrojů, které váš hardware
+vyžaduje. Například pokud máte jeden z výše zmíněných Dellů, měli
+byste zde zadat <strong class="userinput"><code>exclude port
+0x800-0x8ff</code></strong>. Seznam obvyklých rozsahů se nachází například
+v <a class="ulink" href="http://pcmcia-cs.sourceforge.net/ftp/doc/PCMCIA-HOWTO-1.html#ss1.12" target="_top">System
+resource settings section of the PCMCIA HOWTO</a>.
+Při zadávání rozsahů do instalačního programu vynechejte všechny
+čárky (pokud se v rozsazích nachází).
+
+</p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="kernel-msgs"></a>5.4.5. Význam hlášek při zavádění jádra</h3></div></div></div>
+<p>
+
+Během zavádění systému můžete vidět spoustu hlášení typu
+<code class="computeroutput">can't find ...</code>,
+<code class="computeroutput">... not present</code>,
+<code class="computeroutput">can't initialize ...</code> nebo
+<code class="computeroutput">this driver release depends on ...</code>.
+Většina těchto hlášení je neškodná.  Vy je vidíte proto, že jádro
+instalačního systému je přeloženo tak, aby mohlo běžet na počítačích s
+odlišnými hardwarovými konfiguracemi a mnoha různými periferními
+zařízeními. Samozřejmě že žádný počítač asi nebude mít všechna
+zařízení, tudíž systém nahlásí několik nenalezených zařízení. Také se
+může stát, že se zavádění na chvíli zastaví. To se stává při čekání na
+odpověď od zařízení, které v systému chybí. Pokud se vám zdá doba, za
+kterou systém naběhne, příliš dlouhá, můžete si později vytvořit
+vlastní jádro<span class="phrase"> (viz <a class="xref" href="ch08s06.html" title="8.6. Kompilace nového jádra">8.6 – „Kompilace nového jádra“</a>)</span>.
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="problem-report"></a>5.4.6. Hlášení problémů s instalací</h3></div></div></div>
+<p>
+
+Jestliže se dostanete přes úvodní fázi zavedení systému, ale nemůžete
+instalaci dokončit, můžete použít menu <span class="guimenuitem">Uložit záznamy pro
+pozdější ladění</span>. Tato volba vám umožní uložit na disketu nebo
+zpřístupnit přes webové rozhraní chybové hlášky, stav systému a jiné
+užitečné informace, které vám mohou naznačit, v čem je problém a jak
+ho vyřešit. Tyto údaje nám také můžete poslat spolu s hlášením
+o chybě.
+
+</p>
+<p>
+
+Další užitečné informace můžete najít během instalace v adresáři
+<code class="filename">/var/log/</code> a později v novém systému ve
+<code class="filename">/var/log/installer/</code>.
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="submit-bug"></a>5.4.7. Pošlete nám zprávu o instalaci</h3></div></div></div>
+<p>
+
+Pokud problém přetrvává, prosíme vás o zaslání zprávy o průběhu
+instalace. Zprávu o instalaci můžete zaslat i v případě, že vše
+proběhlo bez problémů — získáme tak přehled o nejrůznějších
+hardwarových konfiguracích.
+
+</p>
+<p>
+
+Zprávy o instalaci budou publikovány v našem systému sledování chyb
+(BTS, Bug Tracking System) a budou přeposlány do veřejného diskusního
+listu. Proto se ujistěte, že použijete emailovou adresu, u které vám
+nevadí, že bude zveřejněna.
+
+</p>
+<p>
+
+Máte-li funkční systém s Debianem, je nejjednodušší zaslat zprávu
+pomocí balíku <code class="classname">reportbug</code>. Nainstalujte si
+potřebné balíky (<span class="command"><strong>apt install installation-report
+reportbug</strong></span>), nastavte <code class="classname">reportbug</code> podle
+kapitoly <a class="xref" href="ch08s05.html#mail-outgoing" title="8.5.2. Odesílání pošty mimo systém">8.5.2 – „Odesílání pošty mimo systém“</a> a spusťte příkaz
+<span class="command"><strong>reportbug installation-reports</strong></span>.
+
+</p>
+<p>
+
+Při psaní zprávy můžete využít následující
+šablonu, kterou pak zašlete jako hlášení o chybě vůči pseudobalíku
+<code class="classname">installation-report</code> na adresu
+<code class="email">&lt;<a class="email" href="mailto:submit@bugs.debian.org">submit@bugs.debian.org</a>&gt;</code>.
+
+</p>
+<div class="informalexample"><pre class="screen">
+Package: installation-reports
+
+Boot method: <em class="replaceable"><code>&lt;Jak jste zavedli instalaci? CD? Disketa? Síť?&gt;</code></em>
+Image version: <em class="replaceable"><code>&lt;Celé url, odkud jste stáhli obraz(y)&gt;</code></em>
+Date: <em class="replaceable"><code>&lt;Datum a čas instalace&gt;</code></em>
+
+Machine: <em class="replaceable"><code>&lt;Popis počítače (např. IBM Thinkpad T41)&gt;</code></em>
+Processor:
+Memory:
+Partitions: <em class="replaceable"><code>&lt;Výstup příkazu df -Tl;&gt;</code></em>
+
+Output of lspci -knn (or lspci -nn):
+
+Base System Installation Checklist:
+[O] = OK, [E] = Error (please elaborate below), [ ] = didn't try it
+
+Initial boot:           [ ]
+Detect network card:    [ ]
+Configure network:      [ ]
+Detect CD:              [ ]
+Load installer modules: [ ]
+Detect hard drives:     [ ]
+Partition hard drives:  [ ]
+Install base system:    [ ]
+Clock/timezone setup:   [ ]
+User/password setup:    [ ]
+Install tasks:          [ ]
+Install boot loader:    [ ]
+Overall install:        [ ]
+
+Comments/Problems:
+
+<em class="replaceable"><code>&lt;Zde se můžete rozepsat o způsobu instalace, zmínit nápady
+      a postřehy, které vás napadly během instalace.&gt;</code></em>
+</pre></div>
+<p>
+
+V samotné zprávě podrobně popište problém, včetně posledních
+viditelných hlášek jádra v okamžiku zaseknutí počítače.
+Také nezapomeňte popsat kroky, kterými jste se do problémové
+části dostali.
+
+</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05s03.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Nahoru"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch06.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">5.3. Zaváděcí parametry </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Domů"></a></td>
+<td width="40%" align="right" valign="top"> Kapitola 6. Používáme instalační program Debianu</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.3. Příprava souborů pro zavedení z USB zařízení</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Debian GNU/Linux — instalační příručka">
+<link rel="up" href="ch04.html" title="Kapitola 4. Získání instalačních médií">
+<link rel="prev" href="ch04s02.html" title="4.2. Stažení souborů ze zrcadel Debianu">
+<link rel="next" href="ch04s04.html" title="4.4. Příprava souborů pro zavedení z pevného disku">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.3. Příprava souborů pro zavedení z USB zařízení</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<th width="60%" align="center">Kapitola 4. Získání instalačních médií</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-usb-files"></a>4.3. Příprava souborů pro zavedení z USB zařízení</h2></div></div></div>
+<p>
+
+Pro přípravu USB zařízení budete potřebovat počítač s nainstalovaným
+GNU/Linuxem a podporou USB. Dnešní systémy GNU/Linuxu by měly USB
+klíčenku rozpoznat automaticky. Pokud tomu tak není, ověřte, zda je
+nahraný jaderný modul usb-storage. Po zasunutí USB klíčenky ji systém
+naváže na zařízení <code class="filename">/dev/sdX</code>, kde
+<em class="replaceable"><code>X</code></em> je písmeno z rozsahu a-z. Přesný název
+zařízení zjistíte z příkazu <span class="command"><strong>dmesg</strong></span>, kde by měl být
+o zasunutí a rozpoznání USB zařízení záznam. Pokud klíčenka obsahuje
+ochranu proti zápisu, vypněte ji.
+
+</p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Varování]" src="images/warning.png"></td>
+<th align="left">Varování</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+
+Postupem popsaným dále v kapitole si smažete všechna data, která se na
+zařízení nachází! Před spuštěním příkazů se raději několikrát
+ujistěte, že jste zařízení zadali správně, protože i drobný překlep
+může způsobit, že si smažete data na pevném disku.
+
+</p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-isohybrid"></a>4.3.1. Příprava USB klíčenky s hybridním CD/DVD obrazem</h3></div></div></div>
+<p>
+
+Obrazy debianích CD/DVD mohou být zapsány přímo na USB klíčenku, což
+je nejjednodušší způsob vytvoření zaváděcího USB zařízení. Stačí si
+podle <a class="xref" href="ch04s01.html" title="4.1. Oficiální sada CD/DVD-ROM">4.1 – „Oficiální sada CD/DVD-ROM“</a> stáhnout některý z obrazů,
+který se vejde na vaši USB klíčenku.
+
+</p>
+<p>
+
+Jestliže máte opravdu malou klíčenku v řádu megabajtů, můžete z
+adresáře <code class="filename">netboot</code> stáhnout obraz
+<code class="filename">mini.iso</code> (viz kapitola <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Kde se nalézají instalační obrazy?">4.2.1 – „Kde se nalézají instalační obrazy?“</a>), nicméně tato varianta zavede pouze minimální
+instalační systém a zbytek stahuje ze sítě.
+
+</p>
+<p>
+
+Zvolený obraz CD/DVD byste měli zapsat přímo na USB klíčenku, čímž
+přepíšete všechna data, která na ní byla. Například na systému s
+GNU/Linuxem můžete obraz CD/DVD zapsat na USB klíčenku následovně
+(ujistěte se, že žádný souborový systém z klíčenky není připojený):
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>cp <em class="replaceable"><code>debian.iso</code></em> /dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>sync</code></strong>
+</pre></div>
+<p>
+
+Na systémech s Windows můžete pro zápis obrazu použít nástroj <a class="ulink" href="http://sf.net/projects/win32diskimager/" target="_top">win32diskimager</a>.
+
+</p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Důležité]" src="images/important.png"></td>
+<th align="left">Důležité</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+
+Obraz je nutno zapsat na celé zařízení, ne jen do případné oblasti,
+tj. například do <code class="filename">/dev/sdb</code> a ne
+<code class="filename">/dev/sdb1</code>. Také nepoužívejte nástroje jako
+<span class="command"><strong>unetbootin</strong></span>, které zapisovaný obraz mění.
+
+</p></td></tr>
+</table></div>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Důležité]" src="images/important.png"></td>
+<th align="left">Důležité</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+
+Vytvoření instalační USB klíčenky tímto způsobem by mělo fungovat
+většině uživatelů. Ostatní možnosti popsané níže slouží spíše lidem se
+speciálními požadavky.
+
+</p></td></tr>
+</table></div>
+<p>
+
+Hybridní obraz na USB klíčence obvykle nezabírá veškerý prostor, což
+přímo vybízí použití volného místa pro uložení potřebných souborů
+s firmwarem, speciálních balíků, nebo jiných souborů. Veškeré soubory
+jsou pak pěkně pohromadě na jednom médiu.
+
+</p>
+<p>
+
+Stačí na USB klíčence vytvořit druhou oblast typu FAT, připojit ji
+a nakopírovat nebo rozbalit do ní příslušné soubory s firmwarem (viz
+<a class="xref" href="ch06s04.html" title="6.4. Nahrání chybějícího firmwaru">6.4 – „Nahrání chybějícího firmwaru“</a>). Například takto:
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX2</code></em> /mnt</code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>cd /mnt</code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>tar zxvf <em class="replaceable"><code>/cesta/k/</code></em>firmware.tar.gz</code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>cd /</code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>umount /mnt</code></strong>
+</pre></div>
+<p>
+
+</p>
+<p>
+
+Jestliže jste na USB klíčenku nakopírovali obraz
+<code class="filename">mini.iso</code>, nemusíte druhou oblast vytvářet,
+protože už je tam předchystaná. Po odpojení a novém zasunutí USB
+klíčenky by se měly objevit obě dvě oblasti.
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-easy"></a>4.3.2. Ruční kopírování souborů</h3></div></div></div>
+<p>
+
+Jiný způsob vytvoření instalační USB klíčenky je ruční nakopírování
+instalačního systému a obrazu malého instalačního CD. USB klíčenka by
+měla mít velikost alespoň 1 GB. Menší velikosti jsou podporovány
+pouze při ruční výrobě podle <a class="xref" href="ch04s03.html#usb-copy-flexible" title="4.3.3. Ruční kopírování souborů — pružná cesta">4.3.3 – „Ruční kopírování souborů — pružná cesta“</a>.
+
+</p>
+<p>
+
+K dispozici máte soubor <code class="filename">hd-media/boot.img.gz</code>,
+který obsahuje všechny instalační soubory (včetně jádra), zavaděč
+<span class="phrase"><code class="classname">syslinux</code></span>
+ a jeho
+konfigurační soubor.
+
+</p>
+<p>
+
+I když je tento způsob vytvoření zaváděcího USB média pohodlný, má
+jednu zásadní nevýhodu: logická velikost zařízení bude vždy omezena na
+1 GB, i když je skutečná kapacita USB klíčenky mnohonásobně
+větší. Budete-li ji chtít někdy v budoucnu použít k jinému účelu a
+budete-li vyžadovat její celou kapacitu, budete ji muset přerozdělit a
+znovu vytvořit souborový systém.
+
+</p>
+<p>
+
+Jediné co musíte se staženým <code class="filename">boot.img.gz</code> udělat,
+je rozbalit ho na USB zařízení:
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>gzip -dc boot.img.gz &gt;/dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+</pre></div>
+<p>
+
+</p>
+<p>
+
+Na klíčence nyní bude jedna velká oblast typu
+<span class="phrase">FAT16.</span> 
+Připojte ji (<strong class="userinput"><code>mount
+<em class="replaceable"><code>/dev/sdX</code></em>
+ /mnt</code></strong>)
+a nakopírujte na ni ISO obraz instalačního CD. Nyní stačí
+klíčenku odpojit (<strong class="userinput"><code>umount /mnt</code></strong>) a je hotovo.
+
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-copy-flexible"></a>4.3.3. Ruční kopírování souborů — pružná cesta</h3></div></div></div>
+<p>
+
+Pokud máte rádi více pružnosti, nebo jen chcete zjistit <span class="quote">„<span class="quote">co se
+děje za oponou</span>“</span>, můžete použít následující metodu<span class="phrase">, ve které mj. ukážeme,
+jak místo celého USB zařízení použít pouze první oblast.</span>
+
+</p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm838"></a>4.3.3.1. Rozdělení USB zařízení</h4></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Poznámka]" src="images/note.png"></td>
+<th align="left">Poznámka</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>
+
+Protože má většina USB klíčenek přednastavenou jednu velkou oblast
+typu FAT16, pravděpodobně nemusíte klíčenku přeformátovávat. Pokud to
+však musíte provést, použijte pro vytvoření této oblasti
+<span class="command"><strong>cfdisk</strong></span> nebo podobný nástroj pro dělení
+disku<a href="#ftn.idm843" class="footnote" name="idm843"><sup class="footnote">[3]</sup></a>, nainstalujte MBR příkazem
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>install-mbr /dev/<em class="replaceable"><code>sdX</code></em></code></strong>
+</pre></div>
+<p>
+
+z balíku <code class="classname">mbr</code> a vytvořte souborový systém
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>mkdosfs /dev/<em class="replaceable"><code>sdX1</code></em></code></strong>
+</pre></div>
+<p>
+
+Příkaz <span class="command"><strong>mkdosfs</strong></span> je obsažen v balíku
+<code class="classname">dosfstools</code>. Pozorně se přesvědčete, že
+používáte správný název zařízení!
+
+</p>
+</td></tr>
+</table></div>
+<p>
+
+Pro zavedení jádra z klíčenky je zapotřebí zavaděče. Přestože byste
+mohli použít téměř libovolný zavaděč (např. <code class="classname">lilo</code>),
+je zvykem používat <code class="classname">syslinux</code>, protože používá oblast
+typu FAT16 a jeho nastavení se provádí úpravou jednoduchého textového
+souboru. Díky tomu můžete zavaděč konfigurovat z téměř libovolného
+operačního systému.
+
+</p>
+<p>
+
+Pro instalaci <code class="classname">syslinux</code>u na 1. oblast USB klíčenky
+musíte mít nainstalované balíky <code class="classname">syslinux</code> a
+<code class="classname">mtools</code> a daná oblast nesmí být připojená. Poté
+zadejte příkaz
+
+</p>
+<div class="informalexample"><pre class="screen">
+<code class="prompt">#</code> <strong class="userinput"><code>syslinux /dev/<em class="replaceable"><code>sdX1</code></em></code></strong>
+</pre></div>
+<p>
+
+čímž se na začátek oblasti zapíše zaváděcí sektor a vytvoří se soubor
+<code class="filename">ldlinux.sys</code>, který obsahuje hlavní část zavaděče.
+
+</p>
+</div>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="idm872"></a>4.3.3.2. Přidání obrazu instalačního systému</h4></div></div></div>
+<p>
+
+Připojte oblast
+(<strong class="userinput"><code>mount /dev/<em class="replaceable"><code>sdX1</code></em> /mnt</code></strong>)
+a nakopírujte na ni následující soubory:
+
+</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>
+
+<code class="filename">vmlinuz</code> nebo <code class="filename">linux</code> (jádro)
+
+</p></li>
+<li class="listitem"><p>
+
+<code class="filename">initrd.gz</code> (obraz ramdisku)
+
+</p></li>
+</ul></div>
+<p>
+
+Chcete-li použít grafickou verzi instalátoru, použijte soubory
+z podadresáře <code class="filename">gtk</code>. Pokud si chcete soubory
+přejmenovat, pamatujte, že
+<code class="classname">syslinux</code> umí pracovat pouze s DOSovými názvy
+souborů (8.3).
+
+</p>
+<p>
+
+Dále si vytvořte konfigurační soubor <code class="filename">syslinux.cfg</code>,
+který by měl obsahovat alespoň následující řádek (pokud jste
+použili obraz <code class="filename">netboot</code>, změňte jméno souboru s
+jádrem na <span class="quote">„<span class="quote"><code class="filename">linux</code></span>“</span>):
+
+</p>
+<div class="informalexample"><pre class="screen">
+default vmlinuz initrd=initrd.gz
+</pre></div>
+<p>
+
+Pro grafickou instalaci byste na řádek měli přidat ještě
+parametr <strong class="userinput"><code>vga=788</code></strong> a případné další parametry.
+
+</p>
+<p>
+
+Chcete-li povolit interaktivní přidávání parametrů při zavádění
+instalačního systému, přidejte ještě řádek:
+
+</p>
+<div class="informalexample"><pre class="screen">
+prompt 1
+</pre></div>
+<p>
+
+</p>
+<p>
+
+Pokud jste použili obraz <code class="filename">hd-media</code>, měli byste
+nyní na klíčenku nakopírovat ISO obraz s instalací Debianu (jako
+běžný soubor)<a href="#ftn.idm900" class="footnote" name="idm900"><sup class="footnote">[4]</sup></a> a následně USB klíčenku odpojit (<strong class="userinput"><code>umount
+/mnt</code></strong>).
+
+</p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div id="ftn.idm843" class="footnote"><p><a href="#idm843" class="para"><sup class="para">[3] </sup></a>
+
+Nezapomeňte oblasti nastavit <span class="quote">„<span class="quote">zaváděcí</span>“</span> příznak.
+
+</p></div>
+<div id="ftn.idm900" class="footnote"><p><a href="#idm900" class="para"><sup class="para">[4] </sup></a>
+
+Použít můžete obrazy typu netinst, nebo, pokud se vejde, klidně celé
+první CD/DVD (viz část <a class="xref" href="ch04s01.html" title="4.1. Oficiální sada CD/DVD-ROM">4.1 – „Oficiální sada CD/DVD-ROM“</a>).
+Poznamenejme, že netboot obraz <code class="filename">mini.iso</code> není pro
+tento účel vhodný.
+
+</p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s02.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Nahoru"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s04.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.2. Stažení souborů ze zrcadel Debianu </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Domů"></a></td>
+<td width="40%" align="right" valign="top"> 4.4. Příprava souborů pro zavedení z pevného disku</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

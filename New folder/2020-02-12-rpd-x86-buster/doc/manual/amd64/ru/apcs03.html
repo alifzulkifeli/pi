@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.3. Рекомендуемые схемы разметки</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Руководство по установке Debian GNU/Linux">
+<link rel="up" href="apc.html" title="Приложение C. Разметка дисков в Debian">
+<link rel="prev" href="apcs02.html" title="C.2. Структура каталогов">
+<link rel="next" href="apcs04.html" title="C.4. Имена устройств в Linux">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.3. Рекомендуемые схемы разметки</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs02.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<th width="60%" align="center">Приложение C. Разметка дисков в Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apcs04.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm3961"></a>C.3. Рекомендуемые схемы разметки</h2></div></div></div>
+<p>Для новичков, устанавливающих Debian только для себя на домашние машины, создание единственного раздела для <code class="filename">/</code> (плюс раздел подкачки) вероятно, самый лёгкий и простой путь. Однако, если ваш раздел более 6 ГБ, в качестве типа раздела выберите ext3. Разделы ext2 требуют периодической проверки целостности файловой системы, а это на больших разделах может вызвать паузу при загрузке. </p>
+<p>Для многопользовательских систем или систем с большим дисковым пространством будет лучше создать для <code class="filename">/var</code>, <code class="filename">/tmp</code> и <code class="filename">/home</code> собственные разделы, отдельные от <code class="filename">/</code>. </p>
+<p>Вам может потребоваться отдельный раздел <code class="filename">/usr/local</code>, если вы планируете установку многих программ, которые не являются частью дистрибутива Debian. Если ваша машина будет почтовым сервером, вам может потребоваться сделать отдельный раздел под <code class="filename">/var/mail</code>. Часто, полезно выделить <code class="filename">/tmp</code> в отдельный раздел размером 20–50 МБ. Если вы настраиваете сервер, обслуживающий большое количество пользователей, обычно, хорошо иметь отдельный большой <code class="filename">/home</code> раздел. В общем, ситуация с разметкой зависит от цели, которой служит компьютер. </p>
+<p>Для очень сложных систем вы должны прочитать <a class="ulink" href="http://www.tldp.org/HOWTO/Multi-Disk-HOWTO.html" target="_top"> Multi Disk HOWTO</a>. В нём содержится подробная информация, которая будет наиболее интересна провайдерам Интернет и людям, настраивающим серверы. </p>
+<p>По поводу размера раздела подкачки существует много точек зрения. Согласно проверенному опытом методу, размер подкачки должен совпадать с размером оперативной памяти. Также, в большинстве случаев он должен быть не менее 16 МБ. Естественно, есть исключения из правил. Если вы пытаетесь одновременно решить 10000 уравнений на машине с 256 МБ памяти, то вам может потребоваться гигабайтный (или более) раздел подкачки. </p>
+<p>На  некоторых 32-битных архитектурах (m68k и PowerPC) максимальный размер раздела подкачки равен 2 ГБ. Этого должно хватить почти для любого варианта установки. Однако, если ваши требования к разделу подкачки превышают данную цифру, то, вероятно, лучше попытаться разместить пространство подкачки на нескольких дисках (так называемых <span class="quote">«<span class="quote">шпинделей</span>»</span>) и, если возможно, на разные каналы SCSI или IDE. Ядро будет балансировать нагрузку между различными разделами подкачки, давая большую производительность. </p>
+<p>Пример: старая домашняя машина имеет 32 МБ оперативной памяти и 1.7 ГБ жёсткий диск IDE <code class="filename">/dev/sda</code>. Здесь можно сделать 500 МБ раздел для другой операционной системы <code class="filename">/dev/sda1</code>, 32 МБ раздел подкачки<code class="filename">/dev/sda3</code> и около 1.2 ГБ раздел Linux <code class="filename">/dev/sda2</code>. </p>
+<p>Про то, как будет использовано дисковое пространство можно определить по задачам, которые вы захотите установить после установки системы; смотрите <a class="xref" href="apds02.html" title="D.2. Дисковое пространство, необходимое для задач">Раздел D.2, «Дисковое пространство, необходимое для задач»</a>. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs02.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Наверх"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apcs04.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.2. Структура каталогов </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Начало"></a></td>
+<td width="40%" align="right" valign="top"> C.4. Имена устройств в Linux</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

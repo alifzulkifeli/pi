@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Programas para particionar en Debian</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Guía de instalación de Debian GNU/Linux">
+<link rel="up" href="apc.html" title="Apéndice C. Particionado en Debian">
+<link rel="prev" href="apcs04.html" title="C.4. Nombres de dispositivos en Linux">
+<link rel="next" href="apd.html" title="Apéndice D. Información adicional">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Programas para particionar en Debian</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Apéndice C. Particionado en Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Programas para particionar en Debian</h2></div></div></div>
+<p>Los desarrolladores de Debian han adaptado una gran cantidad de programas para particionar. De esta forma, se puede trabajar con una gran cantidad de discos duros y arquitecturas aceptadas por Debian. A continuación, se presenta una lista de los programas que se pueden aplicar a su arquitectura. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>La herramienta recomendada en Debian para particionar discos. Esta «navaja suiza» también puede ajustar el tamaño de las particiones, crear sistemas de ficheros <span class="phrase"> (como se llama en Windows a <span class="quote">“<span class="quote">formatear</span>”</span>) </span> y asignarlos a sus respectivos puntos de montaje. </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>Es la herramienta original de Linux para particionar discos, buena para expertos. </p>
+<p>Sea cuidadoso si tiene una partición de FreeBSD en su máquina. Los núcleos instalados son compatibles con este tipo de partición, pero la manera en que <span class="command"><strong>fdisk</strong></span> la representa, puede (o no) ser un poco diferente. Para más información, revise el <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">CÓMO de Linux+FreeBSD</a>. </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>Una herramienta para particionar a pantalla completa, muy fácil de usar. Recomendada para la mayoría de los usuarios. </p>
+<p><span class="command"><strong>cfdisk</strong></span> no reconoce las particiones de FreeBSD, y nuevamente, los dispositivos mostrados en pantalla pueden ser un tanto diferentes a los que realmente tiene. </p>
+</dd>
+</dl></div>
+<p>Se ejecutará uno de estos programas por omisión cuando seleccione <span class="guimenuitem">Particionar discos duros</span> (o similar). Puede utilizar otro programa de particionado desde el intérprete de órdenes en VT2, pero esto no es recomendable. </p>
+<p>No se olvide de marcar su partición como <span class="quote">“<span class="quote">Bootable</span>”</span> (arrancable). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm4087"></a>C.5.1. Particionado en <span class="phrase">64-bit PC</span>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </h3></div></div></div>
+<p>Puede tener que ajustar el tamaño de su partición para disponer de suficiente espacio libre para la instalación de Debian si ya tiene algún otro sistema operativo como DOS o Windows, y desea preservarlo mientras haga la instalación. El instalador puede ajustar los tamaños de sistemas de ficheros FAT y NTFS; cuando llegue al paso de particionado en la instalación deberá elegir la opción <span class="guimenuitem">Manual</span> y simplemente seleccionar una partición ya existente para cambiar su tamaño. </p>
+<p>Generalmente, la BIOS del ordenador añade restricciones adicionales para particionar el disco. Hay un límite del número de particiones <span class="quote">“<span class="quote">primarias</span>”</span> y <span class="quote">“<span class="quote">lógicas</span>”</span> que un disco puede almacenar. Adicionalmente, con las BIOS fabricadas antes de 1994–98, existen limitaciones sobre la ubicación en el dispositivo desde el que la la BIOS puede iniciar el sistema. Para más información, consulte la documentación acerca de <a class="ulink" href="http://www.tldp.org/HOWTO/Partition/" target="_top">Cómo particionar en Linux</a>, pero esta sección incluye una visión general para guiarlo en la mayoría de las situaciones posibles. </p>
+<p>Las particiones <span class="quote">“<span class="quote">primarias</span>”</span> son el método original de particionado para discos. Sin embargo, solamente puede haber cuatro de ellas. Para rebasar esta limitación, se inventaron las particiones de tipo <span class="quote">“<span class="quote">extendida</span>”</span> y <span class="quote">“<span class="quote">lógica</span>”</span>. Estableciendo su partición primaria como partición extendida, puede subdividir todo su espacio asignado dentro de ésta en particiones lógicas. Puede crear hasta 60 particiones lógicas en cada partición extendida; sin embargo, puede tener solamente una partición extendida por disco. </p>
+<p>Linux limita a 255 particiones como máximo por cada disco SCSI (3 particiones primarias, 252 particiones lógicas), y 63 particiones en una unidad IDE (3 particiones primarias, 60 particiones lógicas). Sin embargo, los sistemas Debian GNU/Linux comunes proveen sólo 20 dispositivos por partición, por lo tanto, no podrá instalar sobre la partición número 20 o siguientes, a menos que haya creado manualmente los dispositivos para esas particiones. </p>
+<p>Si tiene un disco IDE relativamente grande, y no esta utilizando LBA, ni conductores de «overlay» (proporcionados a veces por los fabricantes de los discos duros), la partición de inicio de su máquina (aquella que contiene la imagen del núcleo Linux) debe estar ubicada en los primeros 1024 cilindros de su disco duro (generalmente alrededor de 524 megabytes, sin considerar la traducción que realiza el BIOS). </p>
+<p>Esta restricción no se aplica si tiene un BIOS relativamente nuevo, (posterior a 1995–98, dependiendo del fabricante) que permita las <span class="quote">“<span class="quote">especificaciones avanzadas de los discos duros</span>”</span>. Ambos Lilo, el gestor de arranque de Linux, y la alternativa de Debian <span class="command"><strong>mbr</strong></span> deben usar el BIOS para leer el núcleo desde el disco y cargarlo en la RAM. Si la BIOS dispone de las extensiones «int 0x13» de acceso a discos grandes, se usarán esas extensiones. De otra manera, se utilizará la interfaz nativa de acceso al disco, que no se podrá usar para acceder a posiciones superiores al cilindro 1023. Una vez que se inicie Linux, no tiene importancia el BIOS que tenga, ya que las restricciones ya no se aplican más, puesto que Linux no utiliza el BIOS para acceder a los discos. </p>
+<p>Si posee un disco grande, podría tener que usar las técnicas para la traducción de cilindros, las cuales pueden ser configuradas desde el BIOS, opciones, tales como LBA (Dirección lógica de bloques) o traducción de modo (<span class="quote">“<span class="quote">grande</span>”</span>), a través de CHS. Puede ver más información acerca de estos problemas con discos grandes en la <a class="ulink" href="http://www.tldp.org/HOWTO/Large-Disk-HOWTO.html" target="_top">Documentación acerca de discos grandes</a>. Si está usando un esquema de traducción de cilindros, y su BIOS no tiene la extensión para el uso de discos grandes, su partición de arranque debe estar dentro de los primeros 1024 cilindros (según la visión <span class="emphasis"><em>traducida</em></span> de la BIOS). </p>
+<p>La manera recomendada de solucionar este problema, es creando una pequeña partición (25 a 50 MB deberían ser suficientes) al principio del disco para usarla como partición de arranque, y después, en el área restante, crear las otras particiones que desee tener. Esta partición de arranque se <span class="emphasis"><em>debe</em></span> montar en <code class="filename">/boot</code>, ya que es en este directorio donde se almacenarán los núcleos de Linux. Está configuración funcionará en cualquier sistema, sin importar si se utiliza traducción LBA o CHS, ni tampoco si su BIOS permite usar las extensiones para discos grandes. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. Nombres de dispositivos en Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> Apéndice D. Información adicional</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
