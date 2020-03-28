@@ -1,7 +1,8 @@
 
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
-var request = require("request");
+// var request = require("request");
+
 require("dotenv").config();
 
 exports.listSearch = (req, res) => {

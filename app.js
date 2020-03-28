@@ -4,8 +4,8 @@ const morgan = require('morgan');
 const cors = require('cors')
 
 const mercari = require("./routes/mercari");
-const translate = require("./routes/translate");
-const rakuten = require("./routes/rakuten")
+const rakuten = require("./routes/rakuten");
+const amazon = require("./routes/amazon");
 
 const app = express();
 require('dotenv').config();
@@ -17,9 +17,9 @@ app.use(cors());
 
 //routes middleware
 
-app.use("/pi", mercari);
-// app.use("/pi", translate);
-// app.use("/pi", rakuten);
+app.use("/scrap", mercari);
+// app.use("/scrap", translate);
+app.use("/scrap", rakuten);
 
 app.use("/", (req, res) =>{
   res.json(process.env.PRICE) 

@@ -1,10 +1,10 @@
-
-
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 var request = require("request");
 require("dotenv").config();
 
+
+// http://localhost:8008/scrap/mercari/search?search=shoes
 exports.listSearch =  (req, res) => {
   const item = [];
   fetch(`https://www.mercari.com/jp/search/?page=${req.query.page||1}&keyword=${req.query.search}&price_min=${req.query.min_price || ""}&price_max=${req.query.max_price || ""}`)
@@ -18,11 +18,13 @@ exports.listSearch =  (req, res) => {
         decodeEntities: true
       });
 
+
+      
       $('.items-box a').each((i, el) => {
         const mercari_item = {
           name: $(el).find('.items-box-name').text(),
           price: parseFloat($(el).find('.items-box-price').text().substr(1).replace(/,/g, '')) * parseFloat(process.env.PRICE),
-          link: $(el).attr('href'),
+          link: "https://www.mercari.com" + $(el).attr('href'),
           image1: $(el).children().children().attr('data-src'),
           description: ''
         }
@@ -38,7 +40,7 @@ exports.listSearch =  (req, res) => {
 
 
 
-
+// http://localhost:8008/scrap/mercari/product?uri=https://www.mercari.com/jp/items/m85512024872/
 exports.productDetails = (req, res) => {
   fetch(`${req.query.uri}`)
     .then(res => res.text())
