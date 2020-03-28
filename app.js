@@ -18,7 +18,6 @@ app.use(cors());
 //routes middleware
 
 app.use("/scrap", mercari);
-// app.use("/scrap", translate);
 app.use("/scrap", rakuten);
 
 app.use("/", (req, res) =>{
